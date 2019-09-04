@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3c5d4f83-91f8-4b22-b57a-6246ffda3cd0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/NodeJS/HighlyNestedObject/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/HighlyNestedObject/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,11 +24,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NodeJS/HighlyNestedObject/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="36" column="23" lean-forward="true" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
+            <state relative-caret-position="340">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Tasks/Data_Structures.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="53" selection-start-column="53" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -73,6 +82,7 @@
         <option value="$PROJECT_DIR$/NodeJS/SquareEquation/index.js" />
         <option value="$PROJECT_DIR$/NodeJS/HighlyNestedObject/index.html" />
         <option value="$PROJECT_DIR$/NodeJS/HighlyNestedObject/index.js" />
+        <option value="$PROJECT_DIR$/Tasks/Data_Structures.txt" />
       </list>
     </option>
   </component>
@@ -105,6 +115,11 @@
               <item name="VironIT" type="462c0819:PsiDirectoryNode" />
               <item name="NodeJS" type="462c0819:PsiDirectoryNode" />
               <item name="HighlyNestedObject" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="VironIT" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VironIT" type="462c0819:PsiDirectoryNode" />
+              <item name="Tasks" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -143,20 +158,21 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1567460221951</updated>
-      <workItem from="1567460223165" duration="18000000" />
+      <workItem from="1567460223165" duration="18581000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18000000" />
+    <option name="totallyTimeSpent" value="18581000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4957806" visible="true" weight="0.24983476" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4957806" visible="true" weight="0.24983476" />
       <window_info id="Structure" order="2" sideWeight="0.5042194" side_tool="true" visible="true" weight="0.24983476" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Terminal" order="0" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="2" />
       <window_info anchor="bottom" id="Docker" order="3" show_stripe_button="false" />
@@ -213,8 +229,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/NodeJS/HighlyNestedObject/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="23" lean-forward="true" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
+        <state relative-caret-position="340">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tasks/Data_Structures.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="53" selection-start-column="53" selection-end-column="53" />
         </state>
       </provider>
     </entry>
