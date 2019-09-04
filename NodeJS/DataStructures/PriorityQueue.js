@@ -12,7 +12,7 @@ class PriorityQueue {
         this.priorities.push(priority);
     }
 
-    pop(key){
+    _pop(key){
         this.storage.delete(key);
     }
     removePriority(value){
@@ -23,7 +23,7 @@ class PriorityQueue {
         })
     }
 
-    findMinimalPriority(){
+    _findMinimalPriority(){
         let min = this.priorities[0];
         this.priorities.forEach(function (item) {
             min = item < min ? item : min;
@@ -31,7 +31,7 @@ class PriorityQueue {
         return min;
     }
 
-    findMaximalPriority(){
+    _findMaximalPriority(){
         let max = this.priorities[0];
         this.priorities.forEach(function (item) {
             max = item > max ? item : max;
@@ -39,19 +39,19 @@ class PriorityQueue {
         return max;
     }
     extractMinimum() {
-        let min = this.findMinimalPriority();
+        let min = this._findMinimalPriority();
         while(this.storage.has(min)){
             console.log(this.storage.get(min));
-            this.pop(min);
+            this._pop(min);
         }
         this.removePriority(min);
 
     }
     extractMaximum(){
-        let max = this.findMaximalPriority();
+        let max = this._findMaximalPriority();
         while (this.storage.has(max)) {
             console.log(this.storage.get(max));
-            this.pop(max);
+            this._pop(max);
         }
         this.removePriority(max);
     }

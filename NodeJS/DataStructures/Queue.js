@@ -1,4 +1,5 @@
-Stack = require('./Stack');
+'use strict';
+const Stack = require('./Stack');
 
 class Queue extends Stack{
     constructor(){
