@@ -41,13 +41,8 @@ class Queue extends Stack{
             this.stack.push(helpingStack2.pop());
         }
     }
+    size() {
+        return this.stack.size();
+    }
+
 }
-
-let queue = new Queue();
-queue.push(1);
-queue.push(2);
-queue.push(3);
-queue.changeQueueDirection();
-
-queue.viewFirst();
-

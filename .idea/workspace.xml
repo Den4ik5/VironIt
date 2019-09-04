@@ -72,8 +72,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NodeJS/DataStructures/Queue.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-557">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="327">
+              <caret line="48" selection-start-line="48" selection-end-line="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NodeJS/DataStructures/PriorityQueue.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -92,8 +101,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -114,6 +123,7 @@
         <option value="$PROJECT_DIR$/NodeJS/DataStructures/index.html" />
         <option value="$PROJECT_DIR$/NodeJS/DataStructures/штвуч.html" />
         <option value="$PROJECT_DIR$/NodeJS/DataStructures/Stack.js" />
+        <option value="$PROJECT_DIR$/NodeJS/DataStructures/PriorityQueue.js" />
         <option value="$PROJECT_DIR$/NodeJS/DataStructures/Queue.js" />
       </list>
     </option>
@@ -195,10 +205,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26499000" />
+    <option name="totallyTimeSpent" value="26932000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4947589" visible="true" weight="0.24983476" />
@@ -307,6 +318,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/NodeJS/DataStructures/PriorityQueue.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/NodeJS/DataStructures/Stack.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -316,8 +334,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/NodeJS/DataStructures/Queue.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-557">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="327">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
         </state>
       </provider>
     </entry>
