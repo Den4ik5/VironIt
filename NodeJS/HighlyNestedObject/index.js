@@ -1,18 +1,24 @@
 function getAllPrimitives(obj) {
+    let arr =[];
+    scan(obj, arr);
+    return arr;
+}
 
+function scan(obj, arr){
     for(let key in obj){
         if(obj[key] ===  null) {
-            console.log(null);
+            arr.push(null);
         }
         else if (typeof obj[key] === "object"){
-            getAllPrimitives(obj[key]);
+            scan(obj[key], arr);
         }
-
         else {
-            console.log(obj[key]);
+            arr.push(obj[key]);
         }
     }
+    return
 }
+
 obj ={
     id :1,
     name: 'newObject',
@@ -38,4 +44,4 @@ obj ={
     isDef: undefined
 };
 
-getAllPrimitives(obj);
+console.log(getAllPrimitives(obj));
