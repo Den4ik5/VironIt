@@ -7,7 +7,6 @@ const StackNodeUI = (function (docObj) {
             parentNode.append(this.nodeEl);
         }
         static createNodeUI(...props) {
-            console.log(...props);
             return new StackNodeUI(...props);
         }
     }

@@ -8,6 +8,7 @@ const EventEmitter = (function () {
         on(eventName, callback) {
             this.callbackStore[eventName] = this.callbackStore[eventName] || [];
             this.callbackStore[eventName].push(callback);
+            console.log(this.callbackStore);
 
         }
 

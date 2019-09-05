@@ -13,7 +13,7 @@ const Stack = (function(EventEmitterClass) {
 
         pop() {
             this._values.pop();
-            this.emit('popStackNode', );
+            this.emit('popStackNode',);
             return this._values;
         }
     }
