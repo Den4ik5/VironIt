@@ -6,14 +6,40 @@
     <link href="styles.css" rel="stylesheet"/>
 </head>
 <body>
+
     <div id="button-view"></div>
+    <div class="flex-container" id="hidden-container">
+        <div class="first">
+            <input class="input-node-ui" type="text" onchange="get_value(this);"/>
+        </div>
+        <div class="second">
+            <button class="push-and-pop-ui" id="push">push</button>
+            <button class="push-and-pop-ui" id="pop">pop</button>
+        </div>
+    </div>
+    <div id ="column-wrapper" class="input-node-ui">
+
+
+
+
+    </div>
+
     <div id="stack-form"></div>
     <div id="stack-view"></div>
     <script src="EventEmitter.js"></script>
     <script src="Button.js"></script>
     <script src="Stack/Stack.js"></script>
     <script src="Stack/StackNodeUI.js"></script>
+    <script src="Stack/StackNodeUiPop.js"></script>
     <script src="index.js"></script>
+
+
+
+    <script type="text/javascript">
+        function get_value(o)        {
+            alert(o.value);
+        }
+    </script>
 
 </body>
 </html>

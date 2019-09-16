@@ -21,3 +21,41 @@
     font-weight: bold;
     font-size: 50px;
 }
+
+.input-node-ui{
+    text-align: center;
+    width: 96px;
+    height: 44px;
+    margin-left: 0px;
+    margin-top: 0px;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.flex-container {
+    width: 100%;
+    height: 50px;
+    flex-flow: row nowrap;
+    display: flex;
+}
+
+.first {
+    background-color: aqua;
+    width: 100px;
+    height: 50px;
+    margin-left: 100px;
+    margin-top: 10px;
+}
+
+.second {
+    width: 100px;
+    height: 50px;
+    margin-top: 10px;
+}
+.push-and-pop-ui{
+    width:100px;
+    height: 20px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+
+}

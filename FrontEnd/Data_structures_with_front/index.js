@@ -1,24 +1,37 @@
 const stackView = document.getElementById('stack-view');
 const buttonView = document.getElementById('button-view');
+const hiddenDiv = document.getElementById("hidden-container");
 const stack = new Stack();
-const stack2 = new Stack();
-
 
 function onPushNode(value) {
     StackNodeUI.createNodeUI(stackView, value);
 }
 
-let butt = new Button(buttonView, "Stack");
-let butt2 = new Button(buttonView, "Queue");
-let butt3 = new Button(buttonView, "Tree");
+function onPopNode(value) {
+    StackNodeUIPop.removeNodeUI(stackView, value);
+}
+
+function func() {
+    viewDiv(hiddenDiv);
+}
+
+function viewDiv(hiddenDiv){
+    let el = document.getElementById(hiddenDiv);
+    if(el.style.display === "flex"){
+        el.style.display = "none";
+    }
+    el.style.display="flex";
+}
+
+let butt = new Button(buttonView, "Stack", func);
+
 stack.on('pushStackNode', onPushNode);
-stack2.on('pushStackNode', onPushNode);
+stack.on("popStackNode", onPopNode);
+butt.onclick = () => alert('132') ;
 
 stack.push(1);
 stack.push(2);
+stack.push(3);
 stack.pop();
-stack2.push(3);
-stack2.push(4);
 
 
-console.log(stack);
