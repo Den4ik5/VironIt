@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Weather App</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body >
+
+
+    <div id="shell">
+        <section class="main">
+            <select id="chooseCitySelector" class="selector">
+                <option value="0" selected="selected">Minsk</option>
+                <option value="1">Homyel</option>
+                <option value="2">Brest</option>
+            </select>
+            <button id="chooseCityButton" class="button-node-ui" onclick="getWeatherForToday()">Select</button>
+            <button id="chooseCityButton2" class="button-node-ui" onclick="getWeatherForFiveDays()">Select2</button>
+        </section>
+        <section class="main">
+            <select id="chooseDateSelector" class="selector">
+                <option id="firstDay" value="0" selected="selected">Today</option>
+                <option id="secondDay" value="1"></option>
+                <option id="thirdDay" value="2"></option>
+                <option id="fourthDay" value="3"></option>
+                <option id="fifthDay" value="4"></option>
+            </select>
+            <button id="chooseDateButton" class="button-node-ui" onclick="chooseDate()">Select</button>
+
+        </section>
+        <section class="main">
+        <h1 id="city">Choose the city</h1>
+            <p id="temperature"></p>
+            <p id="weather"></p><br>
+        </section>
+        <div id="three-ours-weather">
+            
+        </div>
+    </div>
+
+
+<script src="index.js"></script>
+</body>
+</html>
