@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3c5d4f83-91f8-4b22-b57a-6246ffda3cd0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FrontEnd/WeatherAPI/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/WeatherAPI/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FrontEnd/WeatherAPI/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/WeatherAPI/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/WeatherAPI/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/WeatherAPI/style.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,18 +20,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FrontEnd/WeatherAPI/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="36" selection-start-line="36" selection-end-line="36" />
+            <state relative-caret-position="187">
+              <caret line="77" column="1" lean-forward="true" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
               <folding>
-                <element signature="e#561#1438#0" />
+                <element signature="e#21#217#0" />
                 <element signature="e#2651#2685#0" />
                 <element signature="e#2714#2924#0" />
                 <element signature="n#!!block;n#parseListLogic#0" />
                 <element signature="e#1196#1526#0" />
-                <element signature="e#1573#1858#0" />
               </folding>
             </state>
           </provider>
@@ -40,17 +39,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FrontEnd/WeatherAPI/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+            <state relative-caret-position="255">
+              <caret line="15" column="16" lean-forward="true" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FrontEnd/WeatherAPI/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="29" column="57" lean-forward="true" selection-start-line="29" selection-start-column="57" selection-end-line="29" selection-end-column="57" />
+            <state relative-caret-position="318">
+              <caret line="19" column="116" selection-start-line="19" selection-start-column="116" selection-end-line="19" selection-end-column="116" />
             </state>
           </provider>
         </entry>
@@ -123,9 +122,9 @@
         <option value="$PROJECT_DIR$/FrontEnd/WeatherAPI/test.html" />
         <option value="$PROJECT_DIR$/FrontEnd/WeatherAPI/openWeatherTest.html" />
         <option value="$PROJECT_DIR$/FrontEnd/WeatherAPI/wx25.js" />
-        <option value="$PROJECT_DIR$/FrontEnd/WeatherAPI/style.css" />
         <option value="$PROJECT_DIR$/FrontEnd/WeatherAPI/index.js" />
         <option value="$PROJECT_DIR$/FrontEnd/WeatherAPI/index.html" />
+        <option value="$PROJECT_DIR$/FrontEnd/WeatherAPI/style.css" />
       </list>
     </option>
   </component>
@@ -241,20 +240,20 @@
       <workItem from="1567760892283" duration="3855000" />
       <workItem from="1568238431698" duration="13925000" />
       <workItem from="1568437523035" duration="11536000" />
-      <workItem from="1568623856156" duration="39827000" />
+      <workItem from="1568623856156" duration="42978000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134242000" />
+    <option name="totallyTimeSpent" value="137393000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.51133144" side_tool="true" weight="0.12491738" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.48866856" weight="0.12491738" />
-      <window_info active="true" id="Structure" order="2" sideWeight="0.51133144" side_tool="true" visible="true" weight="0.12491738" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.48725212" visible="true" weight="0.12491738" />
+      <window_info id="Structure" order="2" sideWeight="0.5127479" side_tool="true" visible="true" weight="0.12491738" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3243626" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="2" />
@@ -513,32 +512,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/FrontEnd/WeatherAPI/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="19" column="116" selection-start-line="19" selection-start-column="116" selection-end-line="19" selection-end-column="116" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/FrontEnd/WeatherAPI/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        <state relative-caret-position="255">
+          <caret line="15" column="16" lean-forward="true" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FrontEnd/WeatherAPI/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        <state relative-caret-position="187">
+          <caret line="77" column="1" lean-forward="true" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
           <folding>
-            <element signature="e#561#1438#0" />
+            <element signature="e#21#217#0" />
             <element signature="e#2651#2685#0" />
             <element signature="e#2714#2924#0" />
             <element signature="n#!!block;n#parseListLogic#0" />
             <element signature="e#1196#1526#0" />
-            <element signature="e#1573#1858#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FrontEnd/WeatherAPI/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="29" column="57" lean-forward="true" selection-start-line="29" selection-start-column="57" selection-end-line="29" selection-end-column="57" />
         </state>
       </provider>
     </entry>

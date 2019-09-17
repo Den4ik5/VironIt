@@ -9,8 +9,8 @@
      fifthDay: document.querySelector("#fifthDay"),
 
  };
-const parentNode = document.getElementById('three-ours-weather');
 const getWeatherForToday = () => {
+
     const geoLocation =  getCity();
     let xhr = new XMLHttpRequest();
     xhr.addEventListener("load", function(){
@@ -28,17 +28,18 @@ const getWeatherForToday = () => {
     xhr.send();
 };
 const getWeatherForFiveDays = () => {
+    getWeatherForToday();
   const geoLocation = getCity();
   let xhr = new XMLHttpRequest();
   xhr.addEventListener("load", function () {
       let responce = JSON.parse(xhr.responseText);
       let parsedList = parseList(responce);
-      let docObj = document.getElementById('shell');
-    /*  while (docObj.hasChildNodes()){
-          docObj.removeChild(tableList[docObj.childElementCount-1]);
-      }*/
+      let parentNode = document.getElementById('three-ours-weather');
+      while (parentNode.firstChild){
+          parentNode.removeChild(parentNode.firstChild);
+      }
       for (let i = 0; i < parsedList.length; i++) {
-          docObj.appendChild(tableCreate(parsedList[i]));
+          parentNode.appendChild(createGrid(parsedList[i]));
       }
   });
     let target = "http://api.openweathermap.org/data/2.5/forecast?lat=" + geoLocation.latitude + "&lon="
@@ -46,22 +47,8 @@ const getWeatherForFiveDays = () => {
     xhr.open("Get", target, true);
     xhr.send();
 };
-const createChildNode = (value) => {
-    let nodeEl = document.createElement('p');
-    nodeEl.className = 'created-node-ui';
-    nodeEl.innerHTML = value;
-    return nodeEl;
-};
-const testCreateNodeChild = (list) =>{
-    for(let i=0; i<list.length; i++) {
-        let nodeEl = document.createElement('table');
-        let nodeElDate = document.createElement('th');
-        nodeElDate.colSpan = '5';
-        nodeElDate.innerHTML = parseDate(list[i].clouds.dt_txt)[0];
-        nodeEl.appendChild(nodeElDate);
 
-    }
- };
+
 const parseDate = (dt_txt) =>{
     return  dt_txt.split(' ');
 };
@@ -89,61 +76,78 @@ function parseListLogic(j, list) {
     }
     return [tempList, k];
 }
-const tableCreate = (list) => {
-     let table = document.createElement('table');
-     table.style.width = '400px';
-     table.style.border = '1px solid black';
+const createGrid = (list) => {
+     let grid = document.createElement('table');
+     grid.style.width = '50%';
+     grid.style.border = '1px solid green';
+     grid.style.position = 'center';
+     grid.style.marginLeft = 'auto';
+     grid.style.marginRight = 'auto';
+     grid.style.marginBottom = '20px';
+     grid.style.background = 'black';
+     grid.style.color = 'green';
+
+
+
      let count = 0;
      while(count<list.length+2){
-         let line = table.insertRow();
+         let line = grid.insertRow();
          for(let j =0; j<5; j++){
-             let row = line.insertCell();
-             row.style.width = '30px';
-             row.style.border = '1px solid black';
+             let column = line.insertCell();
+             column.className = 'grid';
+             column.style.width = '30px';
+             column.style.border = '1px solid green';
+
              if(count === 0){
                  line.setAttribute('colspan', 5);
-                 row.appendChild(document.createTextNode(parseDate(list[count].dt_txt)[0] ));
+                 column.appendChild(document.createTextNode(parseDate(list[count].dt_txt)[0] ));
                  break;
              }
              switch(j){
                  case 0:
                      if(count === 1){
-                         row.appendChild(document.createTextNode('time'));
+                         column.appendChild(document.createTextNode('time'));
                          break;
                      }
-                     row.appendChild(document.createTextNode(parseDate(list[count-2].dt_txt)[1] ));
+                     column.appendChild(document.createTextNode(parseDate(list[count-2].dt_txt)[1] ));
                      break;
+
                  case 1:
                      if(count === 1){
-                         row.appendChild(document.createTextNode('temperature'));
+                         column.appendChild(document.createTextNode('temperature'));
                          break;
                      }
-                     row.appendChild(document.createTextNode(list[count-2].main.temp));
+                     column.appendChild(document.createTextNode(Math.round ((list[count-2].main.temp-32)*9/5)));
                      break;
+
                  case 2:
                      if(count === 1){
-                         row.appendChild(document.createTextNode('pressure'));
+                         column.appendChild(document.createTextNode('pressure'));
                          break;
                      }
-                     row.appendChild(document.createTextNode(list[count-2].main.pressure));                     break;
+                     column.appendChild(document.createTextNode(list[count-2].main.pressure));
+                     break;
+
                  case 3:
                      if(count === 1){
-                         row.appendChild(document.createTextNode('conditions'));
+                         column.appendChild(document.createTextNode('conditions'));
                          break;
                      }
-                     row.appendChild(document.createTextNode(list[count-2].weather[0].description));                     break;
+                     column.appendChild(document.createTextNode(list[count-2].weather[0].description));
                      break;
+
                  case 4:
                      if(count === 1){
-                         row.appendChild(document.createTextNode('wind Speed'));
+                         column.appendChild(document.createTextNode('wind Speed'));
                          break;
                      }
-                     row.appendChild(document.createTextNode(list[count-2].wind.speed));                     break;
+                     column.appendChild(document.createTextNode(list[count-2].wind.speed));
+                     break;
              }
          }
          count ++;
      }
-     return table;
+     return grid;
  };
 const getCity = () => {
      let a = document.getElementById('chooseCitySelector').value;
@@ -156,28 +160,7 @@ const getCity = () => {
              return {latitude: 52.0938, longitude: 23.6852};
      }
  };
-const chooseDate = () =>{
+getWeatherForToday();
 
-};
-const formatDate = () => {
-     let date = new Date();
-     let dd = date.getDate();
-     if (dd < 10) dd = '0' + dd;
 
-     let mm = date.getMonth() + 1;
-     if (mm < 10) mm = '0' + mm;
-
-     let yy = date.getFullYear() % 100 ;
-     if (yy < 10) yy = '0' + yy;
-     return {date: dd, months: mm, year: yy};
- };
-const setDates = () => {
-     const date = formatDate();
-     displayData.firstDay.innerText = ( (date.date+'.'+date.months+'.'+ date.year));
-     displayData.secondDay.innerHTML = ((++date.date +'.'+ date.months+'.'+ date.year));
-     displayData.thirdDay.innerHTML = ((++date.date +'.'+ date.months+'.'+ date.year));
-     displayData.fourthDay.innerHTML = ((++date.date +'.'+ date.months+'.'+ date.year));
-     displayData.fifthDay.innerHTML = ((++date.date +'.'+ date.months +'.'+ date.year));
- };
-setDates();
 

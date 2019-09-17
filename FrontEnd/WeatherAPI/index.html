@@ -16,20 +16,10 @@
                 <option value="1">Homyel</option>
                 <option value="2">Brest</option>
             </select>
-            <button id="chooseCityButton" class="button-node-ui" onclick="getWeatherForToday()">Select</button>
-            <button id="chooseCityButton2" class="button-node-ui" onclick="getWeatherForFiveDays()">Select2</button>
+            <button id="chooseCityButton" class="button-node-ui" onclick="getWeatherForToday()">current weather</button>
+            <button id="chooseCityButton2" class="button-node-ui" onclick="getWeatherForFiveDays()"> future weathers</button>
         </section>
-        <section class="main">
-            <select id="chooseDateSelector" class="selector">
-                <option id="firstDay" value="0" selected="selected">Today</option>
-                <option id="secondDay" value="1"></option>
-                <option id="thirdDay" value="2"></option>
-                <option id="fourthDay" value="3"></option>
-                <option id="fifthDay" value="4"></option>
-            </select>
-            <button id="chooseDateButton" class="button-node-ui" onclick="chooseDate()">Select</button>
 
-        </section>
         <section class="main">
         <h1 id="city">Choose the city</h1>
             <p id="temperature"></p>
