@@ -1,6 +1,6 @@
 router - файлы  - работа с  роутами(url-адресами, типами запросов)
 
-controller - файлы - работа с объектами request. response, next
+controller - файлы - работа с объектами request, response, next
 
 service - файлы - работа с данными (достать, изменить, сохранить и т.д.)
 
