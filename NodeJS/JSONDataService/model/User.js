@@ -3,18 +3,20 @@ class User {
         this.id = id;
         this.name = name;
     }
-    get id(){
+    getId(){
         return this.id;
     }
-    set id(id){
+    setId(id){
         this.id = id;
     }
 
-    get name(){
+    getName(){
         return this.name;
     }
 
-    set name(name){
+    setName(name){
         this.name = name;
     }
 }
+
+module.exports = User;

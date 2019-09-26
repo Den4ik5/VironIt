@@ -9,6 +9,9 @@ router.use('/', function (request,response, next) {
         request.custom.id = request.query.id;
         request.custom.name = request.query.name;
     }
+    if(request.body){
+        console.log("i have a body");
+    }
     next();
 });
 
@@ -17,17 +20,16 @@ router.get('/', function (request, response) {
     if(resp!==false){
         response.end(JSON.stringify(resp));
     }
-    else{
-        response.statusCode = 404;
-        response.end('Not Founded');
-    }
+    response.statusCode = 404;
+    response.end('Not Founded');
 });
 
 router.post('/', function (request, response) {
+    request.body= 123;
+    console.log(JSON.stringify(request.body));
     console.log("i am in a Post route");
     response.statusCode = controllers.postController(request.custom);
     console.log(response.statusCode);
-    console.log(123);
     response.statusCode = 500;
     response.end('end of a response');
 });
@@ -43,9 +45,13 @@ router.put('/', function (request, response) {
 
 router.delete('/', function (request, response) {
     console.log("i am in a Delete route");
-    controllers.deleteController(request.custom);
+    const state = controllers.deleteController(request.custom);
+    if(state === true){
+        response.statusCode = 200;
+        response.end('Succesfully deleted');
+    }
     response.statusCode = 500;
-    response.end('end of a delete response');
+    response.end('deleting error');
 });
 
 module.exports = router;

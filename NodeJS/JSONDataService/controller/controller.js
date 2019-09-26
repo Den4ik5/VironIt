@@ -5,7 +5,7 @@ const deleteUser = require('../service/deleteUser');
 
 const getController = (params) =>{
     if(Object.keys(params).length!==0){
-        const user =  getUser.getUser(params["id"]);
+        const user =  getUser.getUser(params.id);
         return user ? user : false;
     }
     else {
@@ -16,12 +16,13 @@ const getController = (params) =>{
 const postController = (params) =>{
     console.log('i am in a Post controller');
     console.log(params["name"]);
-    if(Object.keys(params).length!==0) {
+    if(params.name!==undefined) {
         console.log('i shouldnt be here');
         if (addUser(params["name"])) {
             return 200;
         } else return 500;
     }
+    return false;
 };
 
 const putController = (params) =>{
@@ -40,9 +41,9 @@ const putController = (params) =>{
 const deleteController = (params) =>{
     console.log("i am in a delete conroller");
     if(Object.keys(params).length!==0) {
-        console.log("i shouldn't be here");
-        deleteUser()
+        return deleteUser(params.id);
     }
+    return false;
 };
 
 module.exports ={

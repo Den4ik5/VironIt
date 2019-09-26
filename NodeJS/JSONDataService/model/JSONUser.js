@@ -4,3 +4,5 @@ function createJSONUser(user) {
         "name": user.name,
     };
 }
+
+module.exports = createJSONUser;
