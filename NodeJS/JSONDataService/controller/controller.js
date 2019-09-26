@@ -1,6 +1,6 @@
 const addUser = require('../service/addUser');
 const getUser = require('../service/getUser');
-const changeName = require('../service/changeUser');
+const changeName = require('../service/changeUserName');
 const deleteUser = require('../service/deleteUser');
 
 const getController = (params) =>{
@@ -14,8 +14,6 @@ const getController = (params) =>{
     }
 };
 const postController = (name) =>{
-    console.log('i am in a Post controller');
-    console.log(name);
     if(name!==undefined) {
         if (addUser(name)) {
             return true;
@@ -24,17 +22,13 @@ const postController = (name) =>{
     return false;
 };
 
-const putController = (params) =>{
-    console.log('i am in a put controller');
-    if(Object.keys(params).length!==0){
-        console.log("i shouldn't be here" );
-        if(params["name"]){
-            changeName(getUser(params["id"]), params["id"]);
-            return 200;
+const putController = (id, name) =>{
+    if(name!==undefined && id!== undefined){
+        if(changeName(id, name)){
+            return true;
         }
-    }else{
-        return 500;
     }
+    return false;
 };
 
 const deleteController = (params) =>{

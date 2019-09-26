@@ -28,8 +28,6 @@ router.get('/', function (request, response) {
 });
 
 router.post('/', function (request, response) {
-    console.log(request.body);
-    console.log("i am in a Post route");
     const state = controllers.postController(request.body.name);
     if(state) {
         response.statusCode = 200;
@@ -40,12 +38,16 @@ router.post('/', function (request, response) {
 });
 
 router.put('/', function (request, response) {
-    console.log("i am in a Put route");
+    console.log(request.body.id);
+    console.log(request.body.name);
+    const state = controllers.putController(request.body.id, request.body.name);
 
-    response.statusCode = controllers.putController(request.custom);
-    response.send();
-    response.end();
-
+    if(state){
+        response.statusCode = 200;
+        response.end('successfully changed');
+    }
+    response.statusCode = 500;
+    response.end('changing error');
 });
 
 router.delete('/', function (request, response) {
