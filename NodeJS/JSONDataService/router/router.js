@@ -2,6 +2,7 @@ const app = require('../app');
 const controllers = require('../controller/controller');
 const express = require('express');
 const router = new express.Router();
+const bodyParser = require('body-parser');
 
 router.use('/', function (request,response, next) {
     request.custom = [];
@@ -14,6 +15,8 @@ router.use('/', function (request,response, next) {
     }
     next();
 });
+router.use('/', bodyParser.urlencoded({ extended: false }));
+router.use('/', bodyParser.json());
 
 router.get('/', function (request, response) {
     const resp = controllers.getController(request.custom);
@@ -25,13 +28,15 @@ router.get('/', function (request, response) {
 });
 
 router.post('/', function (request, response) {
-    request.body= 123;
-    console.log(JSON.stringify(request.body));
+    console.log(request.body);
     console.log("i am in a Post route");
-    response.statusCode = controllers.postController(request.custom);
-    console.log(response.statusCode);
+    const state = controllers.postController(request.body.name);
+    if(state) {
+        response.statusCode = 200;
+        response.end('successfully added');
+    }
     response.statusCode = 500;
-    response.end('end of a response');
+    response.end('adding error');
 });
 
 router.put('/', function (request, response) {
@@ -44,7 +49,6 @@ router.put('/', function (request, response) {
 });
 
 router.delete('/', function (request, response) {
-    console.log("i am in a Delete route");
     const state = controllers.deleteController(request.custom);
     if(state === true){
         response.statusCode = 200;

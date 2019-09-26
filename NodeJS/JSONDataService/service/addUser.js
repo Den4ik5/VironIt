@@ -8,13 +8,12 @@ const addUserLogic = (id, name) =>{
 };
 const addUser =  (name) => {
     console.log("i am in addUserFunction");
-    const JsonObject = JSON.parse(fs.readFileSync(PATH).toString());
-    const id = ++JsonObject.keys;
-    JsonObject.users.push(createJsonUser(addUserLogic(id, name)));
-    console.log(JSON.stringify(JsonObject));
-    // const JsonObject = JSON.parse.JSON.stringify(fs.readFileSync('../'+__dirname+'/data.json'));
-    // const id = Object.keys(JsonObject).length;
-    // JsonObject["users"].push(createJSONUser(addUserLogic(id, name)));
-    // fs.writeFileSync( '../'+__dirname+'/data.json', JSON.stringify(JsonObject));
+    const jsonObject = JSON.parse(fs.readFileSync(PATH).toString());
+    const id = ++jsonObject.keys;
+    const comparableLength = jsonObject.users.length;
+    jsonObject.users.push(createJsonUser(addUserLogic(id, name)));
+    const comparableLength2 = jsonObject.users.length;
+    fs.writeFileSync(PATH, JSON.stringify(jsonObject));
+    return comparableLength < comparableLength2;
 };
 module.exports = addUser;

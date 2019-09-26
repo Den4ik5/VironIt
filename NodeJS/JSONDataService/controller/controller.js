@@ -13,14 +13,13 @@ const getController = (params) =>{
         return users ? users : false;
     }
 };
-const postController = (params) =>{
+const postController = (name) =>{
     console.log('i am in a Post controller');
-    console.log(params["name"]);
-    if(params.name!==undefined) {
-        console.log('i shouldnt be here');
-        if (addUser(params["name"])) {
-            return 200;
-        } else return 500;
+    console.log(name);
+    if(name!==undefined) {
+        if (addUser(name)) {
+            return true;
+        }
     }
     return false;
 };
@@ -39,7 +38,6 @@ const putController = (params) =>{
 };
 
 const deleteController = (params) =>{
-    console.log("i am in a delete conroller");
     if(Object.keys(params).length!==0) {
         return deleteUser(params.id);
     }
