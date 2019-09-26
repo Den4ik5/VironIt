@@ -7,7 +7,6 @@ const addUserLogic = (id, name) =>{
     return  new User(id, name);
 };
 const addUser =  (name) => {
-    console.log("i am in addUserFunction");
     const jsonObject = JSON.parse(fs.readFileSync(PATH).toString());
     const id = ++jsonObject.keys;
     const comparableLength = jsonObject.users.length;

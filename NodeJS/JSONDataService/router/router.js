@@ -10,9 +10,6 @@ router.use('/', function (request,response, next) {
         request.custom.id = request.query.id;
         request.custom.name = request.query.name;
     }
-    if(request.body){
-        console.log("i have a body");
-    }
     next();
 });
 router.use('/', bodyParser.urlencoded({ extended: false }));
@@ -38,8 +35,6 @@ router.post('/', function (request, response) {
 });
 
 router.put('/', function (request, response) {
-    console.log(request.body.id);
-    console.log(request.body.name);
     const state = controllers.putController(request.body.id, request.body.name);
 
     if(state){
