@@ -2,6 +2,16 @@ const addUser = require('../service/addUser');
 const getUser = require('../service/getUser');
 const changeName = require('../service/changeUserName');
 const deleteUser = require('../service/deleteUser');
+class Controller{
+    constructor(){
+
+    }
+    getMethod(){}
+    postMethod(){}
+    putMethod(){}
+    deleteMethod(){}
+}
+
 
 const getController = (params) =>{
     if(Object.keys(params).length!==0){

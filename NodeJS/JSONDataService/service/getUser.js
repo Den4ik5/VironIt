@@ -1,5 +1,6 @@
 const fs = require('fs');
 const PATH = require('../constants');
+
 const getUser = (id) =>{
     const contents = fs.readFileSync(PATH);
     const JsonObject =  JSON.parse(contents.toString());
