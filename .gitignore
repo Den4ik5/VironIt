@@ -1,2 +1,7 @@
 .idea/
 NodeJS/JSONDataService/node_modules/
+NodeJS/MongoDBDataService/node_modules/
+NodeJS/MongoDBDataService/package-lock.json
+NodeJS/DataServiceMongoDB/package-lock.json
+NodeJS/DataServiceMongoDB/node_modules/
+NodeJS/DataServiceMongoDB/
