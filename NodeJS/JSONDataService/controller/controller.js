@@ -3,7 +3,6 @@ const getUser = require('../service/getUser');
 const changeName = require('../service/changeUserName');
 const deleteUser = require('../service/deleteUser');
 class Controller{
-
     constructor(request){
         this.method = request.method;
         if(this.method === "GET" || this.method === "DELETE") {
@@ -31,39 +30,19 @@ class Controller{
     }
     run(){
         if(this.method==="GET"){
-            return this.getMethod();
+            const state =  this.getMethod();
         }
         if(this.method==="POST"){
-            return this.postMethod();
+            const state = this.postMethod();
         }
         if(this.method==="PUT"){
-            return this.putMethod();
+            const state = this.putMethod();
         }
         if(this.method==="DELETE"){
-            return this.deleMethod();
+            const state = this.deleMethod();
         }
     }
 }
 
 
-const getController = (params) =>{
-
-};
-const postController = (name) =>{
-
-};
-
-const putController = (id, name) =>{
-
-};
-
-const deleteController = (params) =>{
-
-};
-
-module.exports ={
-  getController,
-  postController,
-  putController,
-  deleteController
-};
+module.exports = Controller;
