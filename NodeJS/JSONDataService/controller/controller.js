@@ -3,49 +3,54 @@ const getUser = require('../service/getUser');
 const changeName = require('../service/changeUserName');
 const deleteUser = require('../service/deleteUser');
 class Controller{
-    constructor(){
+    constructor(request){
+        this.method = request.method;
+        if(this.method === "GET" || this.method === "DELETE") {
+            this.id = request.params.id;
+            this.name = request.params.name
+        }
+        else {
+            this.id = request.body.id;
+            this.name = request.body.name;
+        }
 
+        this.id = request.params.id;
+        if(this.id!==undefined){
+            this.getMethod = getUser.getUser(this.id);
+        }
+        else {
+            this.getMethod = getUser.getAllUsers();
+        }
+        this.body = request.body;
+        this.name = request.params.name;
+        this.postMethod = addUser(this.name);
+        this.putMethod = changeName(this.id, this.name);
+        this.deleMethod = deleteUser(this.id);
+        }
     }
-    getMethod(){}
-    postMethod(){}
-    putMethod(){}
-    deleteMethod(){}
+
+
+
+    setAction();
+    postMethod();
+    putMethod();
+    deleteMethod();
 }
 
 
 const getController = (params) =>{
-    if(Object.keys(params).length!==0){
-        const user =  getUser.getUser(params.id);
-        return user ? user : false;
-    }
-    else {
-        const users = getUser.getAllUsers();
-        return users ? users : false;
-    }
+
 };
 const postController = (name) =>{
-    if(name!==undefined) {
-        if (addUser(name)) {
-            return true;
-        }
-    }
-    return false;
+
 };
 
 const putController = (id, name) =>{
-    if(name!==undefined && id!== undefined){
-        if(changeName(id, name)){
-            return true;
-        }
-    }
-    return false;
+
 };
 
 const deleteController = (params) =>{
-    if(Object.keys(params).length!==0) {
-        return deleteUser(params.id);
-    }
-    return false;
+
 };
 
 module.exports ={

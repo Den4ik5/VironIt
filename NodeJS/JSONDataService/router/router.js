@@ -16,7 +16,7 @@ router.use('/', bodyParser.urlencoded({ extended: false }));
 router.use('/', bodyParser.json());
 
 router.get('/', function (request, response) {
-    const resp = controllers.getController(request.custom);
+    const resp = controllers.getController(/*request.custom*/request);
     if(resp!==false){
         response.end(JSON.stringify(resp));
     }
@@ -25,7 +25,7 @@ router.get('/', function (request, response) {
 });
 
 router.post('/', function (request, response) {
-    const state = controllers.postController(request.body.name);
+    const state = controllers.postController(/*request.body.name*/ request);
     if(state) {
         response.statusCode = 200;
         response.end('successfully added');
@@ -35,7 +35,7 @@ router.post('/', function (request, response) {
 });
 
 router.put('/', function (request, response) {
-    const state = controllers.putController(request.body.id, request.body.name);
+    const state = controllers.putController(/*request.body.id, request.body.name*/ request);
 
     if(state){
         response.statusCode = 200;
@@ -46,7 +46,7 @@ router.put('/', function (request, response) {
 });
 
 router.delete('/', function (request, response) {
-    const state = controllers.deleteController(request.custom);
+    const state = controllers.deleteController(/*request.custom*/ request);
     if(state === true){
         response.statusCode = 200;
         response.end('Succesfully deleted');
