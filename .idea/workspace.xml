@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3c5d4f83-91f8-4b22-b57a-6246ffda3cd0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NodeJS/JSONDataService/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JSONDataService/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NodeJS/JSONDataService/controller/controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JSONDataService/controller/controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NodeJS/JSONDataService/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JSONDataService/data.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NodeJS/JSONDataService/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JSONDataService/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NodeJS/JSONDataService/router/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JSONDataService/router/router.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NodeJS/JSONDataService/service/addUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JSONDataService/service/addUser.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NodeJS/JSONDataService/service/changeUserName.js" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JSONDataService/service/changeUserName.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NodeJS/JSONDataService/service/deleteUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JSONDataService/service/deleteUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NodeJS/JSONDataService/service/getUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JSONDataService/service/getUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NodeJS/JSONDataService/service/service.js" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NodeJS/JSONDataService/controller/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+            <state relative-caret-position="211">
+              <caret line="33" selection-start-line="33" selection-end-line="34" />
             </state>
           </provider>
         </entry>
@@ -40,8 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NodeJS/JSONDataService/service/addUser.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-44">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="177">
+              <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -49,8 +43,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NodeJS/JSONDataService/service/changeUserName.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="119">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -58,8 +52,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NodeJS/JSONDataService/router/router.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+            <state relative-caret-position="272">
+              <caret line="48" column="30" lean-forward="true" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -182,13 +176,13 @@
         <option value="$PROJECT_DIR$/NodeJS/JSONDataService/constants.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/NodeJS/JSONDataService/service/service.js" />
-        <option value="$PROJECT_DIR$/NodeJS/JSONDataService/service/addUser.js" />
-        <option value="$PROJECT_DIR$/NodeJS/JSONDataService/service/changeUserName.js" />
         <option value="$PROJECT_DIR$/NodeJS/JSONDataService/app.js" />
         <option value="$PROJECT_DIR$/NodeJS/JSONDataService/service/getUser.js" />
-        <option value="$PROJECT_DIR$/NodeJS/JSONDataService/router/router.js" />
         <option value="$PROJECT_DIR$/NodeJS/JSONDataService/data.json" />
         <option value="$PROJECT_DIR$/NodeJS/JSONDataService/service/deleteUser.js" />
+        <option value="$PROJECT_DIR$/NodeJS/JSONDataService/service/addUser.js" />
+        <option value="$PROJECT_DIR$/NodeJS/JSONDataService/router/router.js" />
+        <option value="$PROJECT_DIR$/NodeJS/JSONDataService/service/changeUserName.js" />
         <option value="$PROJECT_DIR$/NodeJS/JSONDataService/controller/controller.js" />
       </list>
     </option>
@@ -333,17 +327,16 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="233784000" />
+    <option name="totallyTimeSpent" value="234435000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.51133144" side_tool="true" weight="0.12491738" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.48427674" visible="true" weight="0.20423001" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.48427674" visible="true" weight="0.20423001" />
       <window_info id="Structure" order="2" sideWeight="0.5157233" side_tool="true" weight="0.20423001" />
       <window_info anchor="bottom" id="TypeScript" />
-      <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49966952" visible="true" weight="0.44050992" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="0" sideWeight="0.49966952" visible="true" weight="0.44050992" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50033045" side_tool="true" weight="0.3243626" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.3286119" />
       <window_info anchor="bottom" id="Docker" order="3" show_stripe_button="false" />
@@ -605,27 +598,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NodeJS/JSONDataService/service/changeUserName.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NodeJS/JSONDataService/service/addUser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-44">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NodeJS/JSONDataService/router/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/NodeJS/JSONDataService/data.json">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -647,10 +619,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/NodeJS/JSONDataService/service/addUser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NodeJS/JSONDataService/router/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="48" column="30" lean-forward="true" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NodeJS/JSONDataService/service/changeUserName.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/NodeJS/JSONDataService/controller/controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+        <state relative-caret-position="211">
+          <caret line="33" selection-start-line="33" selection-end-line="34" />
         </state>
       </provider>
     </entry>

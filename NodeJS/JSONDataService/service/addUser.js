@@ -6,7 +6,6 @@ const User = require('../model/User');
 module.exports = class AddUser{
     constructor(name){
         this.name = name;
-        this.addUser();
     }
      addUser(){
         const jsonObject = JSON.parse(fs.readFileSync(PATH).toString());

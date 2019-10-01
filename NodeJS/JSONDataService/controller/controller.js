@@ -21,10 +21,10 @@ module.exports = class Controller{
             return  new GetUser(this.id);
         }
         if(this.method === "POST"){
-            return  new AddUser(this.name);
+            return  new AddUser(this.name).addUser();
         }
         if(this.method === "PUT"){
-            return  new ChangeName(this.id, this.name);
+            return  new ChangeName(this.id, this.name).changeName();
         }
         if(this.method === "DELETE"){
             return new DeleteUser(this.id).deleteUser();

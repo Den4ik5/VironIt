@@ -5,7 +5,6 @@ module.exports = class ChangeName {
      constructor(id, name){
           this.id = id;
           this.name = name;
-          this.changeName();
      }
      changeName(){
           const jsonObject = JSON.parse(fs.readFileSync(PATH).toString());

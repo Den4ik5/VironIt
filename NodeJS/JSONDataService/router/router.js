@@ -41,18 +41,17 @@ router.post('/', function (request, response) {
 });
 
 router.put('/', function (request, response) {
-    const resp = new Controller(request);
+    const resp = new Controller(request).run();
     if(resp){
         response.statusCode = 200;
-        response.end(JSON.stringify(resp));
+        response.send(JSON.stringify(resp));
     }
     response.statusCode = 500;
-    response.end('changing error');
+    response.send('changing error');
 });
 
 router.delete('/', function (request, response) {
     const state = new Controller(request).run();
-    console.log("state = " + state);
     if(state === true){
         response.statusCode = 200;
         response.send('Successfully deleted');
