@@ -1,7 +1,7 @@
 const fs = require('fs');
 const PATH = require('../constants');
 
-class ChangeName {
+module.exports = class ChangeName {
      constructor(id, name){
           this.id = id;
           this.name = name;
@@ -13,9 +13,7 @@ class ChangeName {
           const prevName = jsonObject.users[index].name;
           jsonObject.users[index].name = this.name;
           fs.writeFileSync(PATH, JSON.stringify(jsonObject));
-          return prevName !== this.name;
+          return jsonObject.users[index];
      }
+};
 
-}
-
-module.exports = ChangeName;

@@ -3,17 +3,12 @@ const PATH = require('../constants');
 const createJsonUser = require('../model/JSONUser');
 const User = require('../model/User');
 
-
-// const addUserLogic = (id, name) =>{
-//     return  new User(id, name);
-// };
-
-class AddUser{
+module.exports = class AddUser{
     constructor(name){
         this.name = name;
-        addUser();
+        this.addUser();
     }
-    addUser(){
+     addUser(){
         const jsonObject = JSON.parse(fs.readFileSync(PATH).toString());
         const id = ++jsonObject.keys;
         const comparableLength = jsonObject.users.length;
@@ -22,8 +17,5 @@ class AddUser{
         fs.writeFileSync(PATH, JSON.stringify(jsonObject));
         return comparableLength < comparableLength2;
     }
-}
-const addUser =  (name) => {
-
 };
-module.exports = addUser;
+

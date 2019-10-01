@@ -10,7 +10,10 @@ app.listen(port, function () {
     console.log('server is listening http://'+host+':'+port);
 });
 
-
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+});
 app.use('/', router);
 
 module.exports = app;
