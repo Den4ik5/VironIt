@@ -1,46 +1,35 @@
-const addUser = require('../service/addUser');
-const getUser = require('../service/getUser');
-const changeName = require('../service/changeUserName');
-const deleteUser = require('../service/deleteUser');
+const AddUser = require('../JsonService/addUser');
+const GetUser = require('../JsonService/getUser');
+const ChangeName = require('../JsonService/changeUserName');
+const DeleteUser = require('../JsonService/deleteUser');
+module.exports = class Controller{
+    constructor(request){
+        this.method = request.method;
+        if(this.method === "GET" || this.method === "DELETE") {
+            this.id = request.custom.id;
+            this.name = request.custom.name
+        }
+        else {
+            this.id = request.body.id;
+            this.name = request.body.name;
+        }
 
-const getController = (params) =>{
-    if(Object.keys(params).length!==0){
-        const user =  getUser.getUser(params.id);
-        return user ? user : false;
     }
-    else {
-        const users = getUser.getAllUsers();
-        return users ? users : false;
-    }
-};
-const postController = (name) =>{
-    if(name!==undefined) {
-        if (addUser(name)) {
-            return true;
+
+    run(){
+        if(this.method === "GET"){
+            return  new GetUser(this.id);
+        }
+        if(this.method === "POST"){
+            return  new AddUser(this.name).addUser();
+        }
+        if(this.method === "PUT"){
+            return  new ChangeName(this.id, this.name).changeName();
+        }
+        if(this.method === "DELETE"){
+            return new DeleteUser(this.id).deleteUser();
         }
     }
-    return false;
 };
 
-const putController = (id, name) =>{
-    if(name!==undefined && id!== undefined){
-        if(changeName(id, name)){
-            return true;
-        }
-    }
-    return false;
-};
 
-const deleteController = (params) =>{
-    if(Object.keys(params).length!==0) {
-        return deleteUser(params.id);
-    }
-    return false;
-};
-
-module.exports ={
-  getController,
-  postController,
-  putController,
-  deleteController
-};

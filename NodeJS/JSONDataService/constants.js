@@ -1,2 +1,2 @@
-const PATH = `c:/Users/Den/Desktop/study/VironIT/NodeJS/JSONDataService/data.json`;
+const PATH = __dirname+'/data.json';
 module.exports = PATH;
