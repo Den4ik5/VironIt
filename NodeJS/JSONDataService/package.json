@@ -171,6 +171,7 @@
       "resolved": "https://registry.npmjs.org/mime-types/-/mime-types-2.1.24.tgz",
       "version": "2.1.24"
     },
+    "mongodb": "^3.3.2",
     "ms": {
       "integrity": "sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=",
       "resolved": "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz",

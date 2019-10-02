@@ -1,7 +1,15 @@
+//Services for JSON
 const AddUser = require('../JsonService/addUser');
 const GetUser = require('../JsonService/getUser');
 const ChangeName = require('../JsonService/changeUserName');
 const DeleteUser = require('../JsonService/deleteUser');
+//Services for MONGO
+/*
+const AddUser = require('../MongoService/AddUser');
+const GetUser = require('../MongoService/GetUser');
+const ChangeName = require('../MongoService/ChangeUser');
+const DeleteUser = require('../MongoService/DeleteUser');
+*/
 module.exports = class Controller{
     constructor(request){
         this.method = request.method;

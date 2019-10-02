@@ -36,8 +36,7 @@ router.post('/', function (request, response) {
     if (resp) {
         response.statusCode = 200;
         response.send(JSON.stringify(resp));
-    }
-    else {
+    } else {
         response.statusCode = 500;
         response.send('adding error');
     }

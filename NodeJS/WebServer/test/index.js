@@ -22,7 +22,7 @@ let server = http.createServer(function (request, response) {
             response.end('Hello ' + queryValue )
         }
         else if(queryKey === 'file'){
-            let fileContent = fs.readFileSync("constants.js.txt", "utf8");
+            let fileContent = fs.readFileSync("const.js.js.txt", "utf8");
             response.end(fileContent);
         }
         else {

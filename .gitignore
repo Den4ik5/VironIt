@@ -1,15 +1,5 @@
 .idea/
 NodeJS/JSONDataService/node_modules/
-<<<<<<< HEAD
-NodeJS/MongoDBDataService/node_modules/
-NodeJS/MongoDBDataService/package-lock.json
-NodeJS/DataServiceMongoDB/package-lock.json
-NodeJS/DataServiceMongoDB/node_modules/
-NodeJS/DataServiceMongoDB/
-=======
 NodeJS/JSONDataService/package-lock.json
-NodeJs/DataServiceMongoDB/node_modules/
-NodeJs/DataServiceMongoDB/package-lock.json
-NodeJs/MongoDBDataService/package-lock.json
-NodeJs/MongoDBDataService/node_modules/
->>>>>>> JsonDataRefactoring
+NodeJS/"TEST MONGODB"/package-lock.json
+NodeJS/"TEST MONGODB"/node_modules/
