@@ -1,5 +1,6 @@
 .idea/
-NodeJS/JSONDataService/node_modules/
-NodeJS/JSONDataService/package-lock.json
-NodeJS/"TEST MONGODB"/package-lock.json
-NodeJS/"TEST MONGODB"/node_modules/
+/NodeJS/JSONDataService/node_modules/
+/NodeJS/JSONDataService/package-lock.json
+/NodeJS/MongoDataApp/package-lock.json
+/NodeJS/MongoDataApp/node_modules/
+/NodeJs/TestExpressGenerator/
