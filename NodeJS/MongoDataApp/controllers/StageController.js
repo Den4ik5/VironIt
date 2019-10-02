@@ -1,19 +1,21 @@
-
-
 module.exports = class StageController {
-    static getStage(req,res){
+    static getStage(req, res) {
 
     }
-    static getAllStages(req,res){
+
+    static getAllStages(req, res) {
 
     }
-    static addStage(req,res){
+
+    static addStage(req, res) {
 
     }
-    static deleteStage(req,res){
+
+    static deleteStage(req, res) {
 
     }
-    static updateStage(req,res){
+
+    static updateStage(req, res) {
 
     }
 
