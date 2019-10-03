@@ -1,22 +1,26 @@
+const Service = require('../service/StageService');
+
+
 module.exports = class StageController {
-    static getStage(req, res) {
-
+    static async getStage(req, res) {
+        res.send(await Service.getStage(req.params.id));
     }
 
-    static getAllStages(req, res) {
-
+    static async getAllStages(req, res) {
+        res.send(await Service.getAllStages());
     }
 
-    static addStage(req, res) {
-
+    static async addStage(req, res) {
+        const stage = req.body;
+        res.send(await Service.storeStage(stage));
     }
 
-    static deleteStage(req, res) {
-
+    static async deleteStage(req, res) {
+        res.send(await Service.deleteStage(req.params.id));
     }
 
-    static updateStage(req, res) {
-
+    static async updateStage(req, res) {
+        res.send(await Service.editStage())
     }
 
 };

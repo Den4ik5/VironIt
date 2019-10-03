@@ -17,7 +17,7 @@ module.exports = class StageService {
             return e;
         }
     }
-
+    //TODO: complete deleteStage function
     static async deleteStage(id) {
         try {
             return await (() => {
@@ -29,12 +29,8 @@ module.exports = class StageService {
         }
     }
 
-    static async storeStage(title, description, place) {
-        const stage = new Stage({
-            title: title,
-            description: description,
-            place: place
-        });
+    static async storeStage(stageDto) {
+        const stage = new Stage(stageDto);
         try {
             return (await stage.save());
         } catch (e) {

@@ -6,7 +6,7 @@ module.exports = class LeagueService {
 
     static async getLeague(id) {
         try {
-            return await League.findByID({_id: id});
+            return await League.findById({_id: id});
         } catch (e) {
             return e;
         }
@@ -31,12 +31,8 @@ module.exports = class LeagueService {
         }
     }
 
-    static async storeLeague(season, description, title) {
-        const league = new League({
-            season: season,
-            description: description,
-            title: title
-        });
+    static async storeLeague(leagueDto) {
+        const league = new League(leagueDto);
         try {
             return await league.save();
         } catch (e) {

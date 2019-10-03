@@ -3,6 +3,7 @@ const Race = require('../model/race/RaceSchema');
 const League = require('../model/league/LeaqueSchema');
 module.exports = class UserService {
     static async getUser(id) {
+        console.log(id);
         try {
             return (await User.findById(id));
         } catch (e) {
@@ -38,16 +39,13 @@ module.exports = class UserService {
                 }
             );
         } catch (e) {
+            console.log(e);
             return e;
         }
     }
 
-    static async storeUser(firstName, lastName, username) {
-        const user = new User({
-            firstName: firstName,
-            lastName: lastName,
-            username: username
-        });
+    static async storeUser(userDto) {
+        const user = new User(userDto);
         try {
             return (await user.save());
         } catch (e) {
@@ -57,13 +55,13 @@ module.exports = class UserService {
 
     static async editUser(id, username) {
         try {
-            return (await User.updateOne({_id: id},
+            return (await User.findOneAndUpdate({_id: id},
                     {
                         $set:
                             {
                                 username: username
                             }
-                    })
+                    }, {new: true})
             )
         } catch (e) {
             return e;

@@ -18,7 +18,7 @@ module.exports = class RaceService {
         }
     }
 
-    static async deleteRace() {
+    static async deleteRace(id) {
         try {
             return (await Race.deleteOne({_id: id}));
         } catch (e) {
@@ -26,12 +26,8 @@ module.exports = class RaceService {
         }
     }
 
-    static async storeRace(time, description, title) {
-        const race = new Race({
-            time: time,
-            description: description,
-            title: title
-        });
+    static async storeRace(raceTdo) {
+        const race = new Race(raceTdo);
         try {
             return (await race.save());
         } catch (e) {

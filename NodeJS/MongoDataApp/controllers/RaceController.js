@@ -1,22 +1,26 @@
+const Service = require('../service/RaceService');
+
+
 module.exports = class RaceController {
-    static getRace(req, res) {
-
+    static async getRace(req, res) {
+        res.send(await Service.getRace(req.params.id));
     }
 
-    static getAllRaces(req, res) {
-
+    static async getAllRaces(req, res) {
+        res.send(await Service.getAllRaces());
     }
 
-    static addRace(req, res) {
-
+    static async addRace(req, res) {
+        const race = req.body;
+        res.send(await Service.storeRace(race));
     }
 
-    static deleteRace(req, res) {
-
+    static async deleteRace(req, res) {
+        res.send(await Service.deleteRace(req.params.id));
     }
 
-    static updateRace(req, res) {
-
+    static async updateRace(req, res) {
+        res.send(await Service.editRace())
     }
 
 };

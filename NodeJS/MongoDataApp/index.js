@@ -1,6 +1,8 @@
 const setupDB = require('./setupDB');
 const express = require('express');
 const constants = require('./const');
+const bodyParser = require('body-parser')
+
 
 //my dependencies
 const usersRouter = require('./routes/user');
@@ -14,6 +16,8 @@ app.listen(constants.PORT, () => {
 });
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 
 app.use('/users', usersRouter);
 app.use('/races', racesRouter);

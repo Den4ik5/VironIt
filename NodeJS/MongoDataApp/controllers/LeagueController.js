@@ -1,24 +1,25 @@
-
+const Service = require('../service/LeagueService');
 
 module.exports = class LeagueController {
-    static getLeague(req, res) {
-
+    static async getLeague(req, res) {
+        res.send(await Service.getLeague(req.params.id));
     }
 
-    static getAllLeagues(req, res) {
-
+    static async getAllLeagues(req, res) {
+        res.send(await Service.getAllLeagues());
     }
 
-    static addLeague(req, res) {
-
+    static async addLeague(req, res) {
+        const league = req.body;
+        res.send(await Service.storeLeague(league));
     }
 
-    static deleteLeague(req, res) {
-
+    static async deleteLeague(req, res) {
+        res.send(await Service.deleteLeague(req.params.id));
     }
 
-    static updateLeague(req, res) {
-
+    static async updateLeague(req, res) {
+        res.send(await Service.editLeague());
     }
 
 };

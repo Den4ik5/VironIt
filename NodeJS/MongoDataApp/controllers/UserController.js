@@ -1,27 +1,25 @@
 const Service = require('../service/UserService');
 
 module.exports = class UserController {
-    static getUser(req, res) {
-        console.log(req);
-        const response = Service.getUser(req.query.id);
-        console.log(response);
-        res.send(Service.getUser(req.query.id))
+    static async getUser(req, res) {
+        res.send(await Service.getUser(req.params.id));
     }
 
-    static getAllUsers(req, res) {
-        res.send(Service.getAllUsers())
+    static async getAllUsers(req, res) {
+        res.send(await Service.getAllUsers())
     }
 
-    static addUser(req, res) {
-        res.send(Service.storeUser())
+    static async addUser(req, res) {
+        const user = req.body;
+        res.send(await Service.storeUser(user))
     }
 
-    static deleteUser(req, res) {
-        res.send(Service.deleteUser(req.query.id))
+    static async deleteUser(req, res) {
+        res.send(await Service.deleteUser(req.params.id))
     }
 
-    static updateUser(req, res) {
-        res.send(Service.editUser(req.query.id, req.query.name))
+    static async updateUser(req, res) {
+        res.send(await Service.editUser(req.body.id, req.body.username))
     }
 
 };
