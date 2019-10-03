@@ -7,10 +7,6 @@ const leagueSchema = mongoose.Schema({
         type: [mongoose.Schema.Types.ObjectID],
         ref: 'User'
     },
-    stages: {
-        type: [mongoose.Schema.Types.ObjectID],
-        ref: 'Stage'
-    }
 });
 
 leagueModel = mongoose.model('League', leagueSchema);

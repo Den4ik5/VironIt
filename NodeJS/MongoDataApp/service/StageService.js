@@ -1,5 +1,5 @@
 const Stage = require('../model/stage/StageSchema');
-
+const Race = require('../model/race/RaceSchema');
 
 module.exports = class StageService {
     static async getStage(id) {
@@ -20,7 +20,10 @@ module.exports = class StageService {
 
     static async deleteStage(id) {
         try {
-            return (await Stage.deleteOne({_id: id}));
+            return await (() => {
+                Stage.deleteOne({_id: id});
+                Race.deleteMany({stage: id});
+            });
         } catch (e) {
             return e;
         }

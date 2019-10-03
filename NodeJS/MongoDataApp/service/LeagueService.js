@@ -1,10 +1,12 @@
 const League = require('../model/league/LeaqueSchema');
+const Stage = require('../model/stage/StageSchema');
+
 
 module.exports = class LeagueService {
 
     static async getLeague(id) {
         try {
-            return await League.FindByID({_id: id});
+            return await League.findByID({_id: id});
         } catch (e) {
             return e;
         }
@@ -20,7 +22,10 @@ module.exports = class LeagueService {
 
     static async deleteLeague(id) {
         try {
-            return await League.deleteOne({_id: id});
+            return await (() => {
+                League.deleteOne({_id: id});
+                Stage.deleteMany({league: id})
+            });
         } catch (e) {
             return e;
         }

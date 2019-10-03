@@ -1,5 +1,6 @@
 const User = require('../model/user/UserSchema');
-
+const Race = require('../model/race/RaceSchema');
+const League = require('../model/league/LeaqueSchema');
 module.exports = class UserService {
     static async getUser(id) {
         try {
@@ -20,7 +21,22 @@ module.exports = class UserService {
 
     static async deleteUser(id) {
         try {
-            return (await User.deleteOne({_id: id}));
+            return await (() => {
+                    User.deleteOne({_id: id});
+                    Race.deleteMany({user: id});
+                    League.updateMany({},
+                        {
+                            $set:
+                                {
+                                    users: users.filter((el) => el !== id)
+                                }
+                        }
+                    )
+                    // for (let league in League.find({})) {
+                    //     league.users.filter(user => user.id !== id);
+                    // }
+                }
+            );
         } catch (e) {
             return e;
         }

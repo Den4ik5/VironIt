@@ -6,6 +6,10 @@ const raceSchema = mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectID,
         ref: 'User'
+    },
+    stage:{
+        type:mongoose.Schema.Types.ObjectID,
+        ref: 'Stage'
     }
 });
 

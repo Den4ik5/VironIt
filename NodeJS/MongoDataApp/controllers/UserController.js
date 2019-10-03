@@ -2,6 +2,9 @@ const Service = require('../service/UserService');
 
 module.exports = class UserController {
     static getUser(req, res) {
+        console.log(req);
+        const response = Service.getUser(req.query.id);
+        console.log(response);
         res.send(Service.getUser(req.query.id))
     }
 
