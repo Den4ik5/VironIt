@@ -44,4 +44,12 @@ module.exports = class LeagueService {
         //TODO: add logic
     }
 
+    static async addUserToLeague(DTO){
+        try {
+
+        }catch (e) {
+            return e;
+        }
+    }
+
 };
