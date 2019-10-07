@@ -47,23 +47,54 @@ module.exports = class RaceService {
     static async getAllRacesBySeason(season){
         try {
             return await League.aggregate([
-                {$match:{season}},
-                {$lookup:{
+                {$match:{season: season}},
+                {
+                    $project: {
+                        _id: {
+                            $toString: "$_id",
+                        },
+                        season: "$season",
+                        description: "$description"
+                    },
+                },
+                {
+                    $lookup:{
                     from: "stages",
                     localField: "_id",
-                    foreignField:"league",
-                    as: "stage"
+                    foreignField:"leagues",
+                    as: "stages"
                     },
-
                 },
-                // {$unwind: "$league-stage"},
-                {$lookup: {
-                    from: "races",
-                    localField: "_id",
-                    foreignField: "stage",
-                    as: "race"
+                {
+                    $lookup: {
+                        from: "races",
+                        localField: "stages._id",
+                        foreignField: "stages",
+                        as: "stages.racesArray",
                     }
-                },
+                }
+
+                // {$unwind: {
+                //      path: "$stages",
+                //      preserveNullAndEmptyArrays: true,
+                //      }},
+                // {
+                //     $project: {
+                //         "stages._id":{
+                //             $toString: "$stages._id"
+                //         },
+                //         "stages.title": "$stages.title",
+                //         'stages.description': "$stages.description",
+                //
+                //     }
+                // }
+                // {$lookup: {
+                //     from: "races",
+                //     localField: "_id",
+                //     foreignField: "stage",
+                //     as: "race"
+                //     }
+                // },
                 // {$unwind: "$race-stage"}
             ])
         }catch (e) {
