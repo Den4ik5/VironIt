@@ -9,6 +9,7 @@ module.exports = class RaceService {
             return e;
         }
     }
+
     //works
     static async getAllRaces() {
         try {
@@ -17,6 +18,7 @@ module.exports = class RaceService {
             return e;
         }
     }
+
     //works
     static async deleteRace(id) {
         try {
@@ -25,6 +27,7 @@ module.exports = class RaceService {
             return e;
         }
     }
+
     //works
     static async storeRace(raceTdo) {
         /*
@@ -44,10 +47,11 @@ module.exports = class RaceService {
         }
     }
 
-    static async getAllRacesBySeason(season){
+    //needs tests
+    static async getAllRacesBySeason(season) {
         try {
             return await League.aggregate([
-                {$match:{season: season}},
+                {$match: {season: season}},
                 {
                     $project: {
                         _id: {
@@ -58,11 +62,11 @@ module.exports = class RaceService {
                     },
                 },
                 {
-                    $lookup:{
-                    from: "stages",
-                    localField: "_id",
-                    foreignField:"leagues",
-                    as: "stages"
+                    $lookup: {
+                        from: "stages",
+                        localField: "_id",
+                        foreignField: "leagues",
+                        as: "stages"
                     },
                 },
                 {
@@ -97,13 +101,23 @@ module.exports = class RaceService {
                 // },
                 // {$unwind: "$race-stage"}
             ])
-        }catch (e) {
+        } catch (e) {
             return e;
         }
     }
-
-    static async editRace() {
-        //TODO: add logic
+    //needs tests
+    static async editRace(id, time, description, title) {
+        try {
+            return await Race.findOneAndUpdate({_id: id}, {
+                $set: {
+                    time: time,
+                    description: description,
+                    title: title
+                }
+            })
+        } catch (e) {
+            return e;
+        }
     }
 
 };

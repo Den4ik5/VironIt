@@ -14,9 +14,7 @@ module.exports = class StageController {
         res.send(await Service.getAllStagesRaces(req.params.id))
     }
 
-    static async getAllUsers(req, res){
-        return res.send(await Service.getAllStagesUsers(req.params.id));
-    }
+
     static async addStage(req, res) {
         const stage = req.body;
         res.send(await Service.storeStage(stage));
@@ -27,7 +25,7 @@ module.exports = class StageController {
     }
 
     static async updateStage(req, res) {
-        res.send(await Service.editStage())
+        res.send(await Service.editStage(req.body.id, req.body.title, req.body.description, req.body.place))
     }
 
 };

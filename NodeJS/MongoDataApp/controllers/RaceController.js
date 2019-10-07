@@ -24,7 +24,7 @@ module.exports = class RaceController {
     }
 
     static async updateRace(req, res) {
-        res.send(await Service.editRace())
+        res.send(await Service.editRace(req.body.id, req.body.time, req.body.description, req.body.title))
     }
 
 };

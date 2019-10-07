@@ -1,6 +1,7 @@
 const Stage = require('../model/stage/StageSchema');
 const Race = require('../model/race/RaceSchema');
 const User = require('../model/user/UserSchema');
+const mongoose = require('../model/user/UserSchema');
 
 module.exports = class StageService {
     //works
@@ -21,16 +22,16 @@ module.exports = class StageService {
         }
     }
 
-    //refactor
+    /*
     static async getAllStagesRaces(stageId) {
         try {
             return (await Race.find({stage: stageId}))
         } catch (e) {
             return e;
         }
-    }
+    }*/
 
-    //refactor
+    /*
     static async getAllStagesUsers(stageId) {
         try {
             const users = [];
@@ -42,17 +43,24 @@ module.exports = class StageService {
         } catch (e) {
             return e;
         }
-    }
+    }*/
 
-    //TODO: complete deleteStage function
-    static async deleteStage(id) {
+    //needs tests
+    static async deleteStage(stageId) {
+        let session = null;
         try {
-            return await (() => {
-                Stage.deleteOne({_id: id});
-                Race.deleteMany({stage: id});
+            return await Stage.createCollection().then(() => mongoose.connection.startSession()).then(_session => {
+                session = _session;
+                session.startTransaction();
+                return Race.deleteMany({stage: stageId})
+            }).then(()=>{
+                return Stage.deleteOne({_id: stageId});
+            }).then(()=>{
+                return session.commitTransaction();
             });
         } catch (e) {
-            return e;
+            console.log(e);
+            return session.abortTransaction();
         }
     }
 
@@ -74,8 +82,19 @@ module.exports = class StageService {
         }
     }
 
-    static async editStage() {
-        //TODO: add logic
+    //needs tests
+    static async editStage(id, title, description, place) {
+        try {
+            return await Stage.findOneAndUpdate({_id: id}, {
+                $set: {
+                    title: title,
+                    description: description,
+                    place: place
+                }
+            }, {new: true})
+        } catch (e) {
+            return e;
+        }
     }
 
 };

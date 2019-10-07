@@ -1,6 +1,9 @@
 const League = require('../model/league/LeaqueSchema');
 const Stage = require('../model/stage/StageSchema');
 const User = require('../model/user/UserSchema');
+const Race = require('../model/race/RaceSchema');
+const mongoose = require('mongoose');
+
 
 
 module.exports = class LeagueService {
@@ -12,6 +15,7 @@ module.exports = class LeagueService {
             return e;
         }
     }
+
     //works
     static async getAllLeagues() {
         try {
@@ -20,17 +24,33 @@ module.exports = class LeagueService {
             return e;
         }
     }
-    //don't works
-    static async deleteLeague(id) {
+
+    //needs tests
+    static async deleteLeague(leagueId) {
+        let session = null;
         try {
-            return await (() => {
-                League.deleteOne({_id: id});
-                Stage.deleteMany({league: id})
+            return await League.createCollection().then(() => mongoose.connection.startSession()).then(_session => {
+                session = _session;
+                session.startTransaction();
+                return League.deleteOne({_id: leagueId})
+            }).then(()=>{
+                const stages=[];
+                Stage.find({league : leagueId}).forEach(el=>{stages.push(el._id)});
+                return Race.deleteMany({stage:{
+                        $in: stages
+                    }})
+            }).then(()=>{
+                return Stage.deleteMany({league: leagueId});
+
+            }).then(()=>{
+                return session.commitTransaction();
             });
         } catch (e) {
-            return e;
+            console.log(e);
+            return session.abortTransaction();
         }
     }
+
     //works
     static async storeLeague(leagueDto) {
         // {
@@ -46,9 +66,21 @@ module.exports = class LeagueService {
         }
     }
 
-    static async editLeague() {
-        //TODO: add logic
+    //needs tests
+    static async editLeague(id, title, description) {
+        try {
+            return await League.findOneAndUpdate({_id: id}, {
+                $set: {
+                    title: title,
+                    description: description
+                }
+            }, {new: true})
+
+        } catch (e) {
+            return e;
+        }
     }
+
     //works
     static async addUserToLeague(leagueId, userId) {
         console.log(leagueId);

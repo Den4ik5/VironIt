@@ -20,7 +20,8 @@ module.exports = class LeagueController {
     }
 
     static async updateLeague(req, res) {
-        res.send(await Service.editLeague());
+
+        res.send(await Service.editLeague(req.body.id, req.body.title, req.body.description));
     }
 
     static async addUserToLeague(req, res) {
