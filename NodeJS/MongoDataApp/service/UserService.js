@@ -1,6 +1,7 @@
 const User = require('../model/user/UserSchema');
 const Race = require('../model/race/RaceSchema');
 const League = require('../model/league/LeaqueSchema');
+const mongoose = require('mongoose');
 module.exports = class UserService {
 
     //works
@@ -21,37 +22,28 @@ module.exports = class UserService {
             return e;
         }
     }
-    //hueta but works
-    // static async getAllUserRaces(userId){
-    //     try {
-    //         return (await Race.find({user: userId}));
-    //     }
-    //     catch (e) {
-    //         return e;
-    //     }
-    // }
-    //hueta
-    static async deleteUser(id) {
+    //works
+    static async deleteUser(userId) {
+        let session = null;
         try {
-            return await (() => {
-                    User.deleteOne({_id: id});
-                    Race.deleteMany({user: id});
-                    League.updateMany({},
-                        {
-                            $set:
-                                {
-                                    users: users.filter((el) => el !== id)
-                                }
-                        }
-                    )
-                    // for (let league in League.find({})) {
-                    //     league.users.filter(user => user.id !== id);
-                    // }
-                }
-            );
+            return await User.createCollection().then(() => mongoose.connection.startSession()).then(_session => {
+                session = _session;
+                session.startTransaction();
+                return User.deleteOne({_id: userId})
+            }).then(()=>{
+                return Race.deleteMany({user: userId});
+            }).then(()=>{
+                return League.updateMany({},{
+                    $pull:{
+                        users: userId
+                    }
+                });
+            }).then(()=>{
+                    return session.commitTransaction();
+            });
         } catch (e) {
             console.log(e);
-            return e;
+            return session.abortTransaction();
         }
     }
     //works
@@ -82,10 +74,10 @@ module.exports = class UserService {
             return e;
         }
     }
-    //refactor
+    //works
     static async getUsersLeague(userId){
         try {
-            User.aggregate([
+            return User.aggregate([
                 {
                     $project: {
                         _id:{
@@ -97,7 +89,7 @@ module.exports = class UserService {
                 },
                 {
                     $lookup: {
-                        from: "league",
+                        from: "leagues",
                         localField: "_id",
                         foreignField: "users",
                         as: "league for current user"
@@ -111,6 +103,13 @@ module.exports = class UserService {
     }
     //works
     static async storeUser(userDto) {
+        /*{
+            "name": {
+            "firstName": "Max",
+                "lastName": "Mad"
+        },
+            "username": "MadMax123"
+        }*/
         const user = new User(userDto);
         try {
             return (await user.save());

@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.get('/:id', RaceController.getRace);
 router.get('/', RaceController.getAllRaces);
+router.get('/season/:season', RaceController.getAllRacesBySeason);
 router.post('/', RaceController.addRace);
 router.put('/', RaceController.updateRace);
 router.delete('/:id', RaceController.deleteRace);

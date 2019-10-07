@@ -10,6 +10,10 @@ module.exports = class RaceController {
         res.send(await Service.getAllRaces());
     }
 
+    static async getAllRacesBySeason(req, res){
+        res.send(await Service.getAllRacesBySeason(req.params.season));
+    }
+
     static async addRace(req, res) {
         const race = req.body;
         res.send(await Service.storeRace(race));

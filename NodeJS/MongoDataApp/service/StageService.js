@@ -11,6 +11,7 @@ module.exports = class StageService {
             return e;
         }
     }
+
     //works
     static async getAllStages() {
         try {
@@ -19,26 +20,26 @@ module.exports = class StageService {
             return e;
         }
     }
+
     //refactor
-    static async getAllStagesRaces(stageId){
+    static async getAllStagesRaces(stageId) {
         try {
             return (await Race.find({stage: stageId}))
-        }
-        catch (e) {
+        } catch (e) {
             return e;
         }
     }
+
     //refactor
-    static async getAllStagesUsers(stageId){
+    static async getAllStagesUsers(stageId) {
         try {
             const users = [];
             const races = await Race.find({stage: stageId});
-            races.forEach((el) =>{
+            races.forEach((el) => {
                 users.push(el.user);
-            } );
+            });
             return users;
-        }
-        catch (e) {
+        } catch (e) {
             return e;
         }
     }

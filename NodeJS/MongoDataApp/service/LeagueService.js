@@ -33,7 +33,11 @@ module.exports = class LeagueService {
     }
     //works
     static async storeLeague(leagueDto) {
-
+        // {
+        //     "season": "Summer",
+        //     "description": "Summer league 1",
+        //     "title": "first created league"
+        // }
         const league = new League(leagueDto);
         try {
             return await league.save();
@@ -45,41 +49,18 @@ module.exports = class LeagueService {
     static async editLeague() {
         //TODO: add logic
     }
-    //stoped working
+    //works
     static async addUserToLeague(leagueId, userId) {
         console.log(leagueId);
         console.log(userId);
         try {
-            League.update({_id: leagueId}, {
+            return await League.update({_id: leagueId}, {
                 $push: {
-                    users: userId
+                    users: userId.toString()
                 }
-            }).then().League.save();
+            });
         } catch (e) {
             return e;
         }
     }
-    //hueta
-    static async test(leagueId, userId) {
-        let session  = null;
-        return League.createCollection().then(()=> League.startSession).then(_session =>{
-            session = _session;
-            session.startTransaction();
-            
-        })
-        // League.createCollection()
-        //     .then(() => db.startSession())
-        //     .then(session => session.withTransaction(() => {
-        //         let a = Promise.all(League.findById({_id: id}), Stage.findById({_id: id}));
-        //
-        //     return League.findByIdAndUpdate({_id:leagueId},{
-        //         $set:{
-        //             users: users.push(userId)
-        //         }
-        //     })
-        // })).then(session=>session.withTransaction(()=>{
-        //     return League.findById({_id: leagueId});
-        // })).startSession().then(() => League.delete()).then(() => delete()).catch()
-    }
-
 };
