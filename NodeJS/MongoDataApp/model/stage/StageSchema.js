@@ -4,8 +4,8 @@ const stageSchema = mongoose.Schema({
     description: {type: String, required: true},
     place: {type: String, required: true},
     league: {
-        type: mongoose.Schema.Types.ObjectID,
-        ref: 'League'
+        type: String,
+        required: true
     }
 });
 

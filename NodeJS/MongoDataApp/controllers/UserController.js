@@ -9,6 +9,13 @@ module.exports = class UserController {
         res.send(await Service.getAllUsers())
     }
 
+    static async getRaces(req, res){
+        res.send(await Service.getAllUserRaces(req.params.id))
+    }
+    static async getLeague(req, res){
+        res.send(await Service.getUsersLeague(req.params.id))
+    }
+
     static async addUser(req, res) {
         const user = req.body;
         res.send(await Service.storeUser(user))
@@ -21,5 +28,7 @@ module.exports = class UserController {
     static async updateUser(req, res) {
         res.send(await Service.editUser(req.body.id, req.body.username))
     }
+
+
 
 };

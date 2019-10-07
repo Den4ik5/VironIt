@@ -24,8 +24,10 @@ module.exports = class LeagueController {
     }
 
     static async addUserToLeague(req, res) {
-        const DTO = req.body;
-        res.send(await Service.addUserToLeague(DTO));
+        console.log(req.body);
+        const userID = req.body.userId;
+        const leagueId = req.body.leagueId;
+        res.send(await Service.addUserToLeague(leagueId, userID));
     }
 
 };

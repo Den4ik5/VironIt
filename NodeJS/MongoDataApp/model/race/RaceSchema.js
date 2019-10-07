@@ -4,12 +4,12 @@ const raceSchema = mongoose.Schema({
     description: {type: String, required: true},
     title: {type: String, required: true},
     user: {
-        type: mongoose.Schema.Types.ObjectID,
-        ref: 'User'
+        type: String,
+        required: true
     },
-    stage:{
-        type:mongoose.Schema.Types.ObjectID,
-        ref: 'Stage'
+    stage: {
+        type: String,
+        required: true
     }
 });
 

@@ -2,6 +2,8 @@ const User = require('../model/user/UserSchema');
 const Race = require('../model/race/RaceSchema');
 const League = require('../model/league/LeaqueSchema');
 module.exports = class UserService {
+
+    //works
     static async getUser(id) {
         console.log(id);
         try {
@@ -11,7 +13,7 @@ module.exports = class UserService {
 
         }
     }
-
+    //works
     static async getAllUsers() {
         try {
             return (await User.find({}));
@@ -19,7 +21,16 @@ module.exports = class UserService {
             return e;
         }
     }
-
+    //hueta but works
+    // static async getAllUserRaces(userId){
+    //     try {
+    //         return (await Race.find({user: userId}));
+    //     }
+    //     catch (e) {
+    //         return e;
+    //     }
+    // }
+    //hueta
     static async deleteUser(id) {
         try {
             return await (() => {
@@ -43,7 +54,62 @@ module.exports = class UserService {
             return e;
         }
     }
-
+    //works
+    static async getAllUserRaces(userId){
+        try {
+            return await User.aggregate([
+                {
+                    $project: {
+                        _id: {
+                            $toString: "$_id",
+                        },
+                        name: "$name",
+                        username: "$username"
+                    },
+                },
+                {
+                    $lookup:
+                        {
+                            from: "races",
+                            localField: "_id",
+                            foreignField: "user",
+                            as: "raceForThisUser"
+                        }
+                },
+                {$match: {_id: userId}},
+            ]);
+        }catch (e) {
+            return e;
+        }
+    }
+    //refactor
+    static async getUsersLeague(userId){
+        try {
+            User.aggregate([
+                {
+                    $project: {
+                        _id:{
+                            $toString: "$_id"
+                        },
+                        name: "$name",
+                        username: "$username"
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "league",
+                        localField: "_id",
+                        foreignField: "users",
+                        as: "league for current user"
+                    }
+                },
+                {$match: {_id: userId}}
+            ])
+        }catch (e) {
+            return e;
+        }
+    }
+    //works
     static async storeUser(userDto) {
         const user = new User(userDto);
         try {
@@ -52,7 +118,7 @@ module.exports = class UserService {
             return e;
         }
     }
-
+    //works
     static async editUser(id, username) {
         try {
             return (await User.findOneAndUpdate({_id: id},

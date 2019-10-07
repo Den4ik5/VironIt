@@ -4,8 +4,7 @@ const leagueSchema = mongoose.Schema({
     description: {type: String, required: true},
     title: {type: String, required: true},
     users : {
-        type: [mongoose.Schema.Types.ObjectID],
-        ref: 'User'
+        type: [String],
     },
 });
 
