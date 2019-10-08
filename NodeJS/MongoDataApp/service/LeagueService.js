@@ -66,7 +66,7 @@ module.exports = class LeagueService {
         }
     }
 
-    //needs tests
+    //works
     static async editLeague(id, title, description) {
         try {
             return await League.findOneAndUpdate({_id: id}, {
