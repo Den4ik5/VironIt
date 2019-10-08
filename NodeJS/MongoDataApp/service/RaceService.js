@@ -105,7 +105,8 @@ module.exports = class RaceService {
             return e;
         }
     }
-    //needs tests
+
+    //works
     static async editRace(id, time, description, title) {
         try {
             return await Race.findOneAndUpdate({_id: id}, {
