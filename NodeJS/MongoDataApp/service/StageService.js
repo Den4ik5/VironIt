@@ -82,7 +82,7 @@ module.exports = class StageService {
         }
     }
 
-    //needs tests
+    //works
     static async editStage(id, title, description, place) {
         try {
             return await Stage.findOneAndUpdate({_id: id}, {

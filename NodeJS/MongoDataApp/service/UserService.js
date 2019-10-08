@@ -14,6 +14,7 @@ module.exports = class UserService {
 
         }
     }
+
     //works
     static async getAllUsers() {
         try {
@@ -22,6 +23,7 @@ module.exports = class UserService {
             return e;
         }
     }
+
     //works
     static async deleteUser(userId) {
         let session = null;
@@ -30,24 +32,25 @@ module.exports = class UserService {
                 session = _session;
                 session.startTransaction();
                 return User.deleteOne({_id: userId})
-            }).then(()=>{
+            }).then(() => {
                 return Race.deleteMany({user: userId});
-            }).then(()=>{
-                return League.updateMany({},{
-                    $pull:{
+            }).then(() => {
+                return League.updateMany({}, {
+                    $pull: {
                         users: userId
                     }
                 });
-            }).then(()=>{
-                    return session.commitTransaction();
+            }).then(() => {
+                return session.commitTransaction();
             });
         } catch (e) {
             console.log(e);
             return session.abortTransaction();
         }
     }
+
     //works
-    static async getAllUserRaces(userId){
+    static async getAllUserRaces(userId) {
         try {
             return await User.aggregate([
                 {
@@ -70,17 +73,18 @@ module.exports = class UserService {
                 },
                 {$match: {_id: userId}},
             ]);
-        }catch (e) {
+        } catch (e) {
             return e;
         }
     }
+
     //works
-    static async getUsersLeague(userId){
+    static async getUsersLeague(userId) {
         try {
             return User.aggregate([
                 {
                     $project: {
-                        _id:{
+                        _id: {
                             $toString: "$_id"
                         },
                         name: "$name",
@@ -97,10 +101,11 @@ module.exports = class UserService {
                 },
                 {$match: {_id: userId}}
             ])
-        }catch (e) {
+        } catch (e) {
             return e;
         }
     }
+
     //works
     static async storeUser(userDto) {
         /*{
@@ -117,6 +122,7 @@ module.exports = class UserService {
             return e;
         }
     }
+
     //works
     static async editUser(id, username) {
         try {
