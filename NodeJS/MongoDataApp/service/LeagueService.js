@@ -5,7 +5,6 @@ const Race = require('../model/race/RaceSchema');
 const mongoose = require('mongoose');
 
 
-
 module.exports = class LeagueService {
     //works
     static async getLeague(id) {
@@ -25,10 +24,40 @@ module.exports = class LeagueService {
         }
     }
 
-    //needs tests
+    //works
     static async deleteLeague(leagueId) {
-        let session = null;
+        const stages = [];
+        let temp = await Stage.find({league: leagueId});
+        temp.forEach(el => {
+            stages.push(el._id);
+        });
         try {
+            await Race.find({stage: stages}).remove();
+            await Stage.deleteMany({league: leagueId});
+            await League.findOneAndDelete({_id: leagueId});
+            return true;
+        }catch (e) {
+            return e;
+        }
+    /*
+        try {
+            return await League.deleteOne({_id: leagueId}).then(() => {
+                console.log('hey');
+                return Stage.find({league: leagueId}).forEach(el => {
+                    console.log(el);
+                    stages.push(el._id);
+                });
+            }).then(()=>{
+                return stages.forEach(el=> Race.deleteMany({stage: el}));
+            }).then(() => {
+                return Stage.deleteMany({league: leagueId});
+            });
+        } catch (e) {
+            return e;
+        }
+*/
+
+        /*try {
             return await League.createCollection().then(() => mongoose.connection.startSession()).then(_session => {
                 session = _session;
                 session.startTransaction();
@@ -48,7 +77,7 @@ module.exports = class LeagueService {
         } catch (e) {
             console.log(e);
             return session.abortTransaction();
-        }
+        }*/
     }
 
     //works

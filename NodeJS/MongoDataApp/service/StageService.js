@@ -45,15 +45,21 @@ module.exports = class StageService {
         }
     }*/
 
-    //needs tests
+    //works
     static async deleteStage(stageId) {
-        let session = null;
         try {
-            return await Stage.createCollection().then(() => mongoose.connection.startSession()).then(_session => {
+            return await (Race.deleteMany({stage: stageId})).then(()=>{return Stage.deleteOne({_id:stageId})});
+        }catch (e) {
+            return e;
+        }
+        /*try {
+            return await Race.createCollection().then(() => mongoose.connection.startSession()).then(_session => {
                 session = _session;
                 session.startTransaction();
-                return Race.deleteMany({stage: stageId})
+                console.log('deleting races');
+                return  Race.deleteMany({stage: stageId});
             }).then(()=>{
+                console.log('deleting stage');
                 return Stage.deleteOne({_id: stageId});
             }).then(()=>{
                 return session.commitTransaction();
@@ -61,7 +67,7 @@ module.exports = class StageService {
         } catch (e) {
             console.log(e);
             return session.abortTransaction();
-        }
+        }*/
     }
 
     //works

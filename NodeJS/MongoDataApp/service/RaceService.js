@@ -47,7 +47,7 @@ module.exports = class RaceService {
         }
     }
 
-    //needs tests
+    //don't works properly
     static async getAllRacesBySeason(season) {
         try {
             return await League.aggregate([
