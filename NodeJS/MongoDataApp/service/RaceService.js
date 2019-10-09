@@ -47,64 +47,66 @@ module.exports = class RaceService {
         }
     }
 
-    //don't works properly
+    //works
     static async getAllRacesBySeason(season) {
-        try {
-            return await League.aggregate([
-                {$match: {season: season}},
-                {
-                    $project: {
-                        _id: {
-                            $toString: "$_id",
-                        },
-                        season: "$season",
-                        description: "$description"
+            let result = await League.aggregate([
+                    { $match : { season : season } },
+                    {
+                        $project: {
+                            _id: {
+                                $toString: "$_id"
+                            },
+                            title: "$title",
+                            description: "$description"
+                        }
                     },
-                },
-                {
-                    $lookup: {
-                        from: "stages",
-                        localField: "_id",
-                        foreignField: "leagues",
-                        as: "stages"
+                    {
+                        $lookup:
+                            {
+                                from: 'stages',
+                                localField: '_id',
+                                foreignField: 'league',
+                                as: 'stagesArr'
+
+                            }
+                    }
+                    ,
+                    {
+                        $unwind: {
+                            path: "$stagesArr",
+                            preserveNullAndEmptyArrays: true
+                        }
                     },
-                },
-                {
-                    $lookup: {
-                        from: "races",
-                        localField: "stages._id",
-                        foreignField: "stages",
-                        as: "stages.racesArray",
+                    {
+                        $project: {
+                            'stagesArr._id': {
+                                $toString: "$stagesArr._id"
+                            },
+                            'stagesArr.title': "$stagesArr.title",
+                            'stagesArr.description': "$stagesArr.description",
+                            'stagesArr.place' : "$stagesArr.place"
+                        }
+                    },
+                    {
+                        $lookup: {
+                            from: "races",
+                            localField: "stagesArr._id",
+                            foreignField: "stage",
+                            as: "stagesArr.racesArray",
+                        }
+                    }
+                ],
+                async function (err, response) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log(response)
                     }
                 }
+            );
+        return Promise.resolve(result)
 
-                // {$unwind: {
-                //      path: "$stages",
-                //      preserveNullAndEmptyArrays: true,
-                //      }},
-                // {
-                //     $project: {
-                //         "stages._id":{
-                //             $toString: "$stages._id"
-                //         },
-                //         "stages.title": "$stages.title",
-                //         'stages.description': "$stages.description",
-                //
-                //     }
-                // }
-                // {$lookup: {
-                //     from: "races",
-                //     localField: "_id",
-                //     foreignField: "stage",
-                //     as: "race"
-                //     }
-                // },
-                // {$unwind: "$race-stage"}
-            ])
-        } catch (e) {
-            return e;
-        }
-    }
+    };
 
     //works
     static async editRace(id, time, description, title) {
