@@ -40,6 +40,7 @@ router.post('/', UsersController.addUser);
  * @aos[put] /
  * description: "Changes users username"
  * parameters:
+ * -(body) id {String}
  * -(body) username {String}
  */
 router.put('/', UsersController.updateUser);
