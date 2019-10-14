@@ -1,4 +1,4 @@
-const constants = require('./const');
+const constants = require('../const');
 
 module.exports = () => {
     const mongoose = require('mongoose');

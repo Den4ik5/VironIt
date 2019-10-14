@@ -146,21 +146,22 @@ module.exports = class UserService {
             return e;
         }
     }
-    static async storeRegisteredUser(userDto){
+
+    static async storeRegisteredUser(userDto) {
         const user = new RegisteredUser(userDto);
         try {
             return (await user.save());
-        }catch (e) {
+        } catch (e) {
             return e;
         }
     }
-    static async login(username, password){
+
+    static async login(username, password) {
         const passwordEncoder = new PasswordEncoder(username, password);
         const encodedPassword = passwordEncoder.encodePassword();
-        try{
+        try {
             return (await RegisteredUser.find({username: username, password: encodedPassword}));
-        }
-        catch (e) {
+        } catch (e) {
             return e;
 
         }

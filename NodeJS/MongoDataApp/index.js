@@ -1,7 +1,8 @@
-const setupDB = require('./setupDB');
+const setupDB = require('./config/setupDB');
 const express = require('express');
 const constants = require('./const');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const passport = require('./config/passport');
 
 
 //my dependencies

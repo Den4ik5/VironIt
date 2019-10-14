@@ -34,9 +34,16 @@ router.get('/league/:id', UsersController.getLeague);
  * parameters:
  *  -(body) name {object} it should have only fields firstName and lastName string types
  *  -(body) username {String}
+ *  -(body) password {String}
  */
 router.post('/', UsersController.addUser);
-
+/*
+ * @oas[post] /login
+ * description: "authentication"
+ * parameters:
+ * -(body) username {String}
+ * -(body) password {String}
+ */
 router.post('/login', UsersController.loginUser);
 /*
  * @aos[put] /
