@@ -1,6 +1,7 @@
 const User = require('../model/user/UserSchema');
 const Race = require('../model/race/RaceSchema');
 const League = require('../model/league/LeaqueSchema');
+const RegisteredUser = require('../model/user/RegisteredUserSchema');
 const mongoose = require('mongoose');
 module.exports = class UserService {
 
@@ -136,6 +137,23 @@ module.exports = class UserService {
             )
         } catch (e) {
             return e;
+        }
+    }
+    static async storeRegisteredUser(userDto){
+        const user = new RegisteredUser(userDto);
+        try {
+            return (await user.save());
+        }catch (e) {
+            return e;
+        }
+    }
+    static async login(username, password){
+        try{
+            return (await RegisteredUser.find({username: username, password: password}));
+        }
+        catch (e) {
+            return e;
+
         }
     }
 };

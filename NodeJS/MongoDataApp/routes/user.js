@@ -36,6 +36,8 @@ router.get('/league/:id', UsersController.getLeague);
  *  -(body) username {String}
  */
 router.post('/', UsersController.addUser);
+
+router.post('/login', UsersController.loginUser);
 /*
  * @aos[put] /
  * description: "Changes users username"

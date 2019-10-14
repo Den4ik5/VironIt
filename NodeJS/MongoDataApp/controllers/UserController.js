@@ -21,6 +21,11 @@ module.exports = class UserController {
         res.send(await Service.storeUser(user))
     }
 
+    static async loginUser(req, res){
+        const username = req.body.username;
+        const password = req.body.password;
+        res.send(await Service.login(username, password));
+    }
     static async deleteUser(req, res) {
         res.send(await Service.deleteUser(req.params.id))
     }

@@ -42,7 +42,7 @@ router.put('/user', LeagueController.addUserToLeague);
 /*
  * @oas[delete] /{id}
  * description: "Deletes league by Id"
- * parameters: 
+ * parameters:
  * -(path) id {String} league Id
  */
 router.delete('/:id', LeagueController.deleteLeague);
