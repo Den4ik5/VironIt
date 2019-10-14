@@ -2,6 +2,7 @@ const User = require('../model/user/UserSchema');
 const Race = require('../model/race/RaceSchema');
 const League = require('../model/league/LeaqueSchema');
 const RegisteredUser = require('../model/user/RegisteredUserSchema');
+const PasswordEncoder = require('./PasswordEncoder');
 const mongoose = require('mongoose');
 module.exports = class UserService {
 
@@ -114,9 +115,12 @@ module.exports = class UserService {
             "firstName": "Max",
                 "lastName": "Mad"
         },
-            "username": "MadMax123"
+            "username": "MadMax123",
+            "password": ""
         }*/
         const user = new User(userDto);
+        const passwordEncoder = new PasswordEncoder(user.username, user.password);
+        user.password = passwordEncoder.encodePassword();
         try {
             return (await user.save());
         } catch (e) {
@@ -125,13 +129,16 @@ module.exports = class UserService {
     }
 
     //works
-    static async editUser(id, username) {
+    static async editUser(id, username, password) {
         try {
+            const passwordEncoder = new PasswordEncoder(username, password);
+            const encodedPassword = passwordEncoder.encodePassword();
             return (await User.findOneAndUpdate({_id: id},
                     {
                         $set:
                             {
-                                username: username
+                                username: username,
+                                password: encodedPassword,
                             }
                     }, {new: true})
             )
@@ -148,8 +155,10 @@ module.exports = class UserService {
         }
     }
     static async login(username, password){
+        const passwordEncoder = new PasswordEncoder(username, password);
+        const encodedPassword = passwordEncoder.encodePassword();
         try{
-            return (await RegisteredUser.find({username: username, password: password}));
+            return (await RegisteredUser.find({username: username, password: encodedPassword}));
         }
         catch (e) {
             return e;

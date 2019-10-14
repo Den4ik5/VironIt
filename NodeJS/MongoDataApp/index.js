@@ -14,6 +14,7 @@ app = express();
 app.listen(constants.PORT, () => {
     console.log('server is listening http://' + constants.HOST + ':' + constants.PORT);
 });
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -23,6 +24,7 @@ app.use('/users', usersRouter);
 app.use('/races', racesRouter);
 app.use('/stages', stagesRouter);
 app.use('/leagues', leaguesRouter);
+
 setupDB();
 module.exports = app;
 
