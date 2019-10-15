@@ -9,16 +9,12 @@ const publicKey2 = cryptico.publicKeyString(RSAKEY2);
 const publicKey = cryptico.publicKeyString(RSAKey);
 
 const encryptionResult = cryptico.encrypt(password, publicKey);
+const encryptionResult2 = cryptico.encrypt(password, publicKey2);
 
-const decryptionResult = cryptico.decrypt(encryptionResult.cipher, RSAKey);
+const decryptionResult2 = cryptico.decrypt(encryptionResult2.cipher, RSAKEY2);
+const decryptionResult = cryptico.decrypt(encryptionResult.cipher, RSAKEY2);
 
-console.log(publicKey);
-console.log('------');
-console.log(encryptionResult);
-console.log('--------');
-console.log(encryptionResult.cipher);
-console.log('------');
-console.log(decryptionResult.plaintext);
-console.log('-----');
-console.log(publicKey === publicKey2);
+console.log(decryptionResult === decryptionResult2);
+console.log(RSAKEY2.toString() === RSAKey.toString());
+console.log(publicKey===publicKey2);
 

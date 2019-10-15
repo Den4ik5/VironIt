@@ -1,19 +1,20 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('../model/user/UserSchema');
-const PasswordEncoder = require('../service/PasswordEncoder');
 
-module.exports = passport.use(new LocalStrategy({
-    username: 'user[username]',
-    password: 'user[password]',
-}, (username, password, done)=>{
-    User.find({username: username}).then((user)=>{
-        if(user){
-            if(PasswordEncoder.checkPassword(user.password.publicKey, password, user.password.password)){
-                console.log("here should be authorized");
-                return done(null, user);
+module.exports = passport.use(new LocalStrategy(
+    function (username, password, done) {
+        User.findOne({username: username}, function (err, user) {
+            if (err) {
+                return done(err);
             }
-        }
-        return done(null, false, { errors: { 'email or password': 'is invalid' } });
-    }).catch(done);
-}));
+            if (!user) {
+                return done(null, false, {message: 'Incorrect username'});
+            }
+            if (!user || !user.validatePassword(password)) {
+                return done(null, false, {message: "Incorrect password"});
+            }
+            return done(null, user);
+        });
+    }
+));

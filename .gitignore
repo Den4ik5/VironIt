@@ -7,3 +7,6 @@ NodeJS/MongoDataApp/node_modules/
 NodeJs/test encryption/package-lock.json
 NodeJs/test encryption/package.json
 NodeJs/test encryption/node_modules/
+NodeJs/testAUTH/node_modules/
+NodeJs/testAUTH/package.json
+NodeJs/testAUTH/package-lock.json

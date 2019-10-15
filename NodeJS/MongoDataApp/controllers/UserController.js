@@ -18,13 +18,14 @@ module.exports = class UserController {
 
     static async addUser(req, res) {
         const user = req.body;
-        res.send(await Service.storeUser(user))
+        res.json(await Service.storeUser(user));
     }
 
     static async loginUser(req, res){
-        let user= {};
-        user.username = req.body.username;
-        user.password = req.body.password;
+        let user = req.body;
+     //   user.username = req.body.username;
+     //   user.password = req.body.password;
+        console.log(user);
         console.log('i am in login User function');
         res.send(await Service.login(user));
     }

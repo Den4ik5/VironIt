@@ -7,8 +7,11 @@ const userSchema =  mongoose.Schema({
         lastName: String
     },
     username: {type: String, required: true},
-    password: {password: String, publicKey: String}
+    password: {hash: String, salt: String}
 });
+
+
+
 
 userSchema.methods.generateJWT = function() {
     console.log('i am in JWT function');
@@ -17,10 +20,20 @@ userSchema.methods.generateJWT = function() {
     expirationDate.setDate(today.getDate() + 60);
 
     return jwt.sign({
-        email: this.email,
+        username: this.username,
         id: this._id,
         exp: parseInt(expirationDate.getTime() / 1000, 10),
     }, 'secret');
+};
+
+userSchema.methods.setPassword = function(password) {
+    this.password.salt = crypto.randomBytes(16).toString('hex');
+    this.password.hash = crypto.pbkdf2Sync(password, this.password.salt, 10000, 512, 'sha512').toString('hex');
+};
+
+userSchema.methods.validatePassword = function(password) {
+    const hash = crypto.pbkdf2Sync(password, this.password.salt, 10000, 512, 'sha512').toString('hex');
+    return this.password.hash === hash;
 };
 
 userSchema.methods.toAuthJSON = function() {

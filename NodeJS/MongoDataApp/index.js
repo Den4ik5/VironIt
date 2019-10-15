@@ -2,6 +2,7 @@ const setupDB = require('./config/setupDB');
 const express = require('express');
 const constants = require('./const');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 const passport = require('./config/passport');
 
 
@@ -19,6 +20,8 @@ app.listen(constants.PORT, () => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(session({ secret: 'passport-tutorial', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
+
 
 
 app.use('/users', usersRouter);

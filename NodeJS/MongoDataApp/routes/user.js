@@ -10,25 +10,32 @@ const auth = require('../config/auth');
  */
 
 router.get('/:id', auth.optional, UsersController.getUser);
+
 /*
  * @oas[get] /
  * description: "Returns all users"
  */
+
 router.get('/', auth.optional, UsersController.getAllUsers);
+
 /*
  * @oas[get] /race/{id}
  * description: "Returns races for user by Id"
  * parameters:
  *  -(path) id {String} User Id
  */
+
 router.get('/race/:id', auth.optional, UsersController.getRaces);
+
 /*
  * @oas[get] /league/{id}
  * description: "Returns all leagues for user by Id"
  * parameters:
  *  -(path) id {String} User Id
  */
+
 router.get('/league/:id', auth.optional,  UsersController.getLeague);
+
 /*
  * @aos[post] /
  * description: "Adds user in to a database"
@@ -37,7 +44,9 @@ router.get('/league/:id', auth.optional,  UsersController.getLeague);
  *  -(body) username {String}
  *  -(body) password {String}
  */
+
 router.post('/', auth.optional, UsersController.addUser);
+
 /*
  * @oas[post] /login
  * description: "authentication"
@@ -45,7 +54,9 @@ router.post('/', auth.optional, UsersController.addUser);
  * -(body) username {String}
  * -(body) password {String}
  */
+
 router.post('/login', auth.optional, UsersController.loginUser);
+
 /*
  * @aos[put] /
  * description: "Changes users username"
@@ -53,13 +64,16 @@ router.post('/login', auth.optional, UsersController.loginUser);
  * -(body) id {String}
  * -(body) username {String}
  */
+
 router.put('/', auth.required, UsersController.updateUser);
+
 /*
  * @aos[delete] /
  * description: "Deletes user by Id"
  * parameters:
  * -(path) id {String} Users Id
  */
+
 router.delete('/:id', auth.optional, UsersController.deleteUser);
 
 module.exports = router;

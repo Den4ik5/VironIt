@@ -4,7 +4,7 @@ const League = require('../model/league/LeaqueSchema');
 const RegisteredUser = require('../model/user/RegisteredUserSchema');
 const PasswordEncoder = require('./PasswordEncoder');
 const mongoose = require('mongoose');
-const passport = require('passport');
+const passport = require('../config/passport');
 module.exports = class UserService {
 
     //works
@@ -120,11 +120,10 @@ module.exports = class UserService {
             "password": { "password: ""}
         }*/
         const user = new User(userDto);
-
-        const passwordEncoder = new PasswordEncoder(user.username, user.password);
-        user.password = passwordEncoder.encodePassword();
+        user.setPassword(user.password);
         try {
-            return (await user.save());
+            await user.save();
+            return {user: user.toAuthJSON()};
         } catch (e) {
             return e;
         }
@@ -162,8 +161,16 @@ module.exports = class UserService {
 
         try {
             console.log('i am in try block');
-
+            if(!user.password){
+                return json({
+                    errors: {
+                        password: 'is required',
+                    },
+                });
+            }
             return passport.authenticate('local', {session: false}, (err, passportUser, info) => {
+                console.log('i hate this world');
+                console.log(passportUser);
                 if (err) {
                     console.log('err');
                     return next(err);
@@ -173,12 +180,12 @@ module.exports = class UserService {
                     console.log('bbbb');
                     user.token = passportUser.generateJWT();
                     console.log('passportUser is exists');
-                    return ({user: user.toAuthJSON()});
-                }
-                else {
+                    return json({user: user.toAuthJSON()});
+                } else {
                     console.log('info');
                 }
             });
+
         } catch (e) {
             console.log('i am in a catch block');
             return e;
