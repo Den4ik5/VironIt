@@ -4,6 +4,7 @@ const League = require('../model/league/LeaqueSchema');
 const RegisteredUser = require('../model/user/RegisteredUserSchema');
 const PasswordEncoder = require('./PasswordEncoder');
 const mongoose = require('mongoose');
+const passport = require('passport');
 module.exports = class UserService {
 
     //works
@@ -116,9 +117,10 @@ module.exports = class UserService {
                 "lastName": "Mad"
         },
             "username": "MadMax123",
-            "password": ""
+            "password": { "password: ""}
         }*/
         const user = new User(userDto);
+
         const passwordEncoder = new PasswordEncoder(user.username, user.password);
         user.password = passwordEncoder.encodePassword();
         try {
@@ -156,12 +158,29 @@ module.exports = class UserService {
         }
     }
 
-    static async login(username, password) {
-        const passwordEncoder = new PasswordEncoder(username, password);
-        const encodedPassword = passwordEncoder.encodePassword();
+    static async login(user) {
+
         try {
-            return (await RegisteredUser.find({username: username, password: encodedPassword}));
+            console.log('i am in try block');
+
+            return passport.authenticate('local', {session: false}, (err, passportUser, info) => {
+                if (err) {
+                    console.log('err');
+                    return next(err);
+                }
+                if (passportUser) {
+                    const user = passportUser;
+                    console.log('bbbb');
+                    user.token = passportUser.generateJWT();
+                    console.log('passportUser is exists');
+                    return ({user: user.toAuthJSON()});
+                }
+                else {
+                    console.log('info');
+                }
+            });
         } catch (e) {
+            console.log('i am in a catch block');
             return e;
 
         }

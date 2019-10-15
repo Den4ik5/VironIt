@@ -22,16 +22,18 @@ module.exports = class UserController {
     }
 
     static async loginUser(req, res){
-        const username = req.body.username;
-        const password = req.body.password;
-        res.send(await Service.login(username, password));
+        let user= {};
+        user.username = req.body.username;
+        user.password = req.body.password;
+        console.log('i am in login User function');
+        res.send(await Service.login(user));
     }
     static async deleteUser(req, res) {
         res.send(await Service.deleteUser(req.params.id))
     }
 
     static async updateUser(req, res) {
-        res.send(await Service.editUser(req.body.id, req.body.username))
+        res.send(await Service.editUser(req.body.id, req.body.username, req.body.password))
     }
 
 

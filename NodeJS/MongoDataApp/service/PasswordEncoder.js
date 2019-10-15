@@ -10,6 +10,9 @@ module.exports = class PasswordEncoder {
     }
 
     encodePassword() {
-        return cryptico.encrypt(this.password, this.publicKey);
+        return {password: cryptico.encrypt(this.password, this.publicKey).cipher, publicKey: this.publicKey}
+    }
+    static checkPassword(publicKey, password, encryptedPassword){
+        return cryptico.encrypt(password, publicKey) === encryptedPassword;
     }
 };
