@@ -23,12 +23,11 @@ passport.use(new LocalStrategy({
     username: 'user[username]',
     password: 'user[password]',
 }, async (username, password, done) => {
-   await User.findOne({ username : username })
+    await User.findOne({ username : username })
         .then((user) => {
             if(!user || !user.validatePassword(password)) {
                 return done(null, false, { errors: { 'email or password': 'is invalid' } });
             }
-
             return done(null, user);
         }).catch(done);
 }));

@@ -28,20 +28,20 @@ userSchema.methods.generateJWT = function() {
 };
 
 userSchema.methods.setPassword = function(password) {
-    
+
     this.password.salt = crypto.randomBytes(16).toString('hex');
     console.log(this.password.salt);
     this.password.hash = crypto.pbkdf2Sync(password, this.password.salt, 10000, 512, 'sha512').toString('hex');
 };
 
-userSchema.methods.validatePassword = function(password) {
+userSchema.methods.validatePassword = async function(password) {
     const hash = crypto.pbkdf2Sync(password, this.password.salt, 10000, 512, 'sha512').toString('hex');
-    return this.password.hash === hash;
+    return await this.password.hash === hash;
 };
 
-userSchema.methods.toAuthJSON = function() {
+userSchema.methods.toAuthJSON = async function() {
     console.log('i am in toAUTH function');
-    return {
+    return await {
         _id: this._id,
         username: this.username,
         name: this.name,

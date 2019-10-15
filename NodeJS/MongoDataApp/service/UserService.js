@@ -171,26 +171,11 @@ module.exports = class UserService {
                 });
             }
             console.log('about to enter authenticate method');
-            return await passport.authenticate('local', {session: false}, async (err, passportUser, info) => {
-                console.log('i hate this world');
-                console.log(JSON.stringify(...arguments));
-                if (err) {
-                    console.log('err');
-                    return next(err);
-                }
-                if (passportUser) {
-                    const user = passportUser;
-                    console.log('bbbb');
-                    console.log('user is exists', JSON.stringify( {user: await user.toAuthJSON()}));
-                    return JSON.stringify({user: await user.toAuthJSON()});
-                } else {
-                    console.log('info');
-                    return info;
-                }
-            });
+
+            return user.toAuthJSON();
 
         } catch (e) {
-            console.log('i am in a catch block');
+            console.log('i am in a catch block', e);
             return e;
 
         }
