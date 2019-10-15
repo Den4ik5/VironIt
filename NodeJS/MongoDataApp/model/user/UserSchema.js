@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
 const userSchema =  mongoose.Schema({
@@ -27,7 +28,9 @@ userSchema.methods.generateJWT = function() {
 };
 
 userSchema.methods.setPassword = function(password) {
+    
     this.password.salt = crypto.randomBytes(16).toString('hex');
+    console.log(this.password.salt);
     this.password.hash = crypto.pbkdf2Sync(password, this.password.salt, 10000, 512, 'sha512').toString('hex');
 };
 

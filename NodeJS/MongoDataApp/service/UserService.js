@@ -4,7 +4,8 @@ const League = require('../model/league/LeaqueSchema');
 const RegisteredUser = require('../model/user/RegisteredUserSchema');
 const PasswordEncoder = require('./PasswordEncoder');
 const mongoose = require('mongoose');
-const passport = require('../config/passport');
+const passport = require('passport');
+const passportCallback = require('../config/passport');
 module.exports = class UserService {
 
     //works
@@ -120,7 +121,7 @@ module.exports = class UserService {
             "password": { "password: ""}
         }*/
         const user = new User(userDto);
-        user.setPassword(user.password);
+        user.setPassword(userDto.password);
         try {
             await user.save();
             return {user: user.toAuthJSON()};
@@ -162,15 +163,17 @@ module.exports = class UserService {
         try {
             console.log('i am in try block');
             if(!user.password){
+                console.log('aaaaaaaaaaaaa');
                 return json({
                     errors: {
                         password: 'is required',
                     },
                 });
             }
-            return passport.authenticate('local', {session: false}, (err, passportUser, info) => {
+            console.log('about to enter authenticate method');
+            return await passport.authenticate('local', {session: false}, async (err, passportUser, info) => {
                 console.log('i hate this world');
-                console.log(passportUser);
+                console.log(JSON.stringify(...arguments));
                 if (err) {
                     console.log('err');
                     return next(err);
@@ -178,11 +181,11 @@ module.exports = class UserService {
                 if (passportUser) {
                     const user = passportUser;
                     console.log('bbbb');
-                    user.token = passportUser.generateJWT();
-                    console.log('passportUser is exists');
-                    return json({user: user.toAuthJSON()});
+                    console.log('user is exists', JSON.stringify( {user: await user.toAuthJSON()}));
+                    return JSON.stringify({user: await user.toAuthJSON()});
                 } else {
                     console.log('info');
+                    return info;
                 }
             });
 
@@ -192,4 +195,4 @@ module.exports = class UserService {
 
         }
     }
-};
+ };

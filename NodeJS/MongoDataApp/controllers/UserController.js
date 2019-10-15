@@ -9,10 +9,11 @@ module.exports = class UserController {
         res.send(await Service.getAllUsers())
     }
 
-    static async getRaces(req, res){
+    static async getRaces(req, res) {
         res.send(await Service.getAllUserRaces(req.params.id))
     }
-    static async getLeague(req, res){
+
+    static async getLeague(req, res) {
         res.send(await Service.getUsersLeague(req.params.id))
     }
 
@@ -21,14 +22,18 @@ module.exports = class UserController {
         res.json(await Service.storeUser(user));
     }
 
-    static async loginUser(req, res){
+    static async loginUser(req, res, next) {
         let user = req.body;
-     //   user.username = req.body.username;
-     //   user.password = req.body.password;
+        //   user.username = req.body.username;
+        //   user.password = req.body.password;
         console.log(user);
         console.log('i am in login User function');
-        res.send(await Service.login(user));
+        const  temp = await ((await Service.login(user))(req, res, next));
+        console.log('temp = ');
+        console.log(temp);
+        res.send(temp);
     }
+
     static async deleteUser(req, res) {
         res.send(await Service.deleteUser(req.params.id))
     }
@@ -36,7 +41,6 @@ module.exports = class UserController {
     static async updateUser(req, res) {
         res.send(await Service.editUser(req.body.id, req.body.username, req.body.password))
     }
-
 
 
 };
