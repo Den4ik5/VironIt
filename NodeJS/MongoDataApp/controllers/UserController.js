@@ -1,28 +1,64 @@
 const Service = require('../service/UserService');
 const passport = require('passport');
 const getTokenFromHeaders = require('../service/getTokenFromHeaders');
-
+const getCredentialsFromJWT = require('../service/getCredentialsFromJWT');
+const grantRights = require('../service/grantRights');
 module.exports = class UserController {
-
-
     static async getUser(req, res) {
-        const token = getTokenFromHeaders(req);
-        res.send(await Service.getUser(req.params.id, token));
+        const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
+        if (!grantRights.grantAdminRights(tokenCredentials)) {
+            if (!grantRights.grantUserRights(tokenCredentials, id)) {
+                res.statusCode = 403;
+                res.send();
+            } else {
+                res.statusCode = 200;
+                res.send(await Service.getUser(req.params.id));
+            }
+        } else {
+            res.statusCode = 200;
+            res.send(await Service.getUser(req.params.id));
+        }
     }
 
     static async getAllUsers(req, res) {
-        const token = getTokenFromHeaders(req);
-        res.send(await Service.getAllUsers(token))
+        const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
+        if (!grantRights.grantAdminRights(tokenCredentials)) {
+            res.statusCode = 403;
+            res.send();
+        } else {
+            res.statusCode = 200;
+            res.send(await Service.getAllUsers())
+        }
     }
 
     static async getRaces(req, res) {
-        const token = getTokenFromHeaders(req);
-        res.send(await Service.getAllUserRaces(req.params.id, token))
+        const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
+        if (!grantRights.grantAdminRights(tokenCredentials)) {
+            if (!grantRights.grantUserRights(tokenCredentials, id)) {
+                res.statusCode = 403;
+                res.send();
+            } else {
+                res.statusCode = 200;
+                res.send(await Service.getAllUserRaces(req.params.id))
+            }
+        } else {
+            res.statusCode = 200;
+            res.send(await Service.getAllUserRaces(req.params.id))
+        }
     }
 
     static async getLeague(req, res) {
-        const token = getTokenFromHeaders(req);
-        res.send(await Service.getUsersLeague(req.params.id, token))
+        const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
+        if (!grantRights.grantAdminRights(tokenCredentials)) {
+            if (!grantRights.grantUserRights(tokenCredentials, id)) {
+                res.statusCode = 403;
+                res.send();
+            } else {
+                res.statusCode = 200;
+                res.send(await Service.getUsersLeague(req.params.id))            }
+        } else {
+            res.statusCode = 200;
+            res.send(await Service.getUsersLeague(req.params.id))        }
     }
 
     static async addUser(req, res) {
@@ -54,13 +90,36 @@ module.exports = class UserController {
     }
 
     static async deleteUser(req, res) {
-        const token = getTokenFromHeaders(req);
-        res.send(await Service.deleteUser(req.params.id, token))
+        const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
+        if (!grantRights.grantAdminRights(tokenCredentials)) {
+            if (!grantRights.grantUserRights(tokenCredentials, id)) {
+                res.statusCode = 403;
+                res.send();
+            } else {
+                res.statusCode = 200;
+                res.send(await Service.deleteUser(req.params.id))
+            }
+        } else {
+            res.statusCode = 200;
+            res.send(await Service.deleteUser(req.params.id))
+        }
+
     }
 
     static async updateUser(req, res) {
-        const token = getTokenFromHeaders(req);
-        res.send(await Service.editUser(req.body.id, req.body.username, req.body.password, token))
+        const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
+        if (!grantRights.grantAdminRights(tokenCredentials)) {
+            if (!grantRights.grantUserRights(tokenCredentials, id)) {
+                res.statusCode = 403;
+                res.send();
+            } else {
+                res.statusCode = 200;
+                res.send(await Service.editUser(req.body.id, req.body.username, req.body.password));
+            }
+        } else {
+            res.statusCode = 200;
+            res.send(await Service.editUser(req.body.id, req.body.username, req.body.password));
+        }
     }
 
 

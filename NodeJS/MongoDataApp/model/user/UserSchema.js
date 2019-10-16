@@ -9,7 +9,11 @@ const userSchema = mongoose.Schema({
         lastName: String
     },
     username: {type: String, required: true},
-    password: {hash: String, salt: String}
+    password: {
+        hash: String,
+        salt: String
+    },
+    isAdmin: {type: String, default: "false"}
 });
 
 userSchema.methods.generateJWT = function () {
@@ -20,6 +24,7 @@ userSchema.methods.generateJWT = function () {
 
     return jwt.sign({
         username: this.username,
+        isAdmin: this.isAdmin,
         id: this._id,
         exp: parseInt(expirationDate.getTime() / 1000, 10),
     }, CONSTANT.SECRET);
@@ -46,6 +51,7 @@ userSchema.methods.toAuthJSON = async function () {
         _id: this._id,
         username: this.username,
         name: this.name,
+        isAdmin: this.isAdmin,
         token: this.generateJWT(),
     };
 };
