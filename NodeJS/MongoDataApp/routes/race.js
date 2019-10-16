@@ -1,6 +1,8 @@
 const express = require('express');
 const RaceController = require('../controllers/RaceController');
 const router = express.Router();
+const auth = require('../config/auth');
+
 
 /*
  * @oas[get] /{id}
@@ -8,19 +10,19 @@ const router = express.Router();
  * parameters:
  * -(path) id {String} Race id
  */
-router.get('/:id', RaceController.getRace);
+router.get('/:id', auth.required,  RaceController.getRace);
 /*
  * @oas[get] /
  * description: "Returns all races"
  */
-router.get('/', RaceController.getAllRaces);
+router.get('/', auth.required, RaceController.getAllRaces);
 /*
  * @oas[get] /season/{season}
  * description: Left join races to stages and stages to leagues matched by a season
  * parameters:
  * -(path) season {String}
  */
-router.get('/season/:season', RaceController.getAllRacesBySeason);
+router.get('/season/:season', auth.required, RaceController.getAllRacesBySeason);
 /*
  * @oas[post] /
  * description: "Adds new Race to the database"
@@ -31,7 +33,7 @@ router.get('/season/:season', RaceController.getAllRacesBySeason);
  * -(body) user {String} user that race belongs to
  * -(body) stage {String} stage that race belongs to
  */
-router.post('/', RaceController.addRace);
+router.post('/', auth.required, RaceController.addRace);
 /*
  * @oas[put] /
  * description: "changes race by id"
@@ -41,13 +43,13 @@ router.post('/', RaceController.addRace);
  * -(body) description {String} New description
  * -(body) title {String} New title
  */
-router.put('/', RaceController.updateRace);
+router.put('/', auth.required, RaceController.updateRace);
 /*
  * @oas[delete] /{id}
  * description: "deletes race by id"
  * parameters:
  * -(path) id {String} Race id
  */
-router.delete('/:id', RaceController.deleteRace);
+router.delete('/:id', auth.required, RaceController.deleteRace);
 
 module.exports = router;

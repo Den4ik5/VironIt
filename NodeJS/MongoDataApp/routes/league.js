@@ -1,18 +1,20 @@
 const express = require('express');
 const LeagueController = require('../controllers/LeagueController');
 const router = express.Router();
+const auth = require('../config/auth');
+
 /*
  * @oas[get] /{id}
  * description: "returns league by id"
  * parameters:
  * -(path) id {String} leagues id
  */
-router.get('/:id', LeagueController.getLeague);
+router.get('/:id', auth.required, LeagueController.getLeague);
 /*
  * @oas[get] /
  * description: "returns all leagues"
  */
-router.get('/', LeagueController.getAllLeagues);
+router.get('/', auth.required, LeagueController.getAllLeagues);
 /*
  * @oas[post] /
  * description: "adds league to database"
@@ -21,7 +23,7 @@ router.get('/', LeagueController.getAllLeagues);
  * -(body) description {String}
  * -(body) title {String}
  */
-router.post('/', LeagueController.addLeague);
+router.post('/', auth.required, LeagueController.addLeague);
 /*
  * @oas[put] /
  * description: "changes league"
@@ -30,7 +32,7 @@ router.post('/', LeagueController.addLeague);
  * -(body) title {String}
  * -(body) description {String}
  */
-router.put('/', LeagueController.updateLeague);
+router.put('/', auth.required, LeagueController.updateLeague);
 /*
  * @oas[put] /user
  * description: "adds user to a league"
@@ -38,13 +40,13 @@ router.put('/', LeagueController.updateLeague);
  * -(body) leagueId {String} league id
  * -(body) userId {String} user Id
  */
-router.put('/user', LeagueController.addUserToLeague);
+router.put('/user', auth.required, LeagueController.addUserToLeague);
 /*
  * @oas[delete] /{id}
  * description: "Deletes league by Id"
  * parameters:
  * -(path) id {String} league Id
  */
-router.delete('/:id', LeagueController.deleteLeague);
+router.delete('/:id', auth.required, LeagueController.deleteLeague);
 
 module.exports = router;
