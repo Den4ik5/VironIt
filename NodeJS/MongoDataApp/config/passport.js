@@ -1,6 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
-const User = require('../model/user/UserSchema');
+const Service = require('../service/UserService');
 
 // module.exports = passport.use(new LocalStrategy(
 //     function (username, password, done) {
@@ -23,11 +23,16 @@ passport.use(new LocalStrategy({
     username: 'user[username]',
     password: 'user[password]',
 }, async (username, password, done) => {
-    await User.findOne({ username : username })
+    await Service.getUserByUsername(username)
         .then((user) => {
-            if(!user || !user.validatePassword(password)) {
-                return done(null, false, { errors: { 'email or password': 'is invalid' } });
+            console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbb');
+            if(user){
+                if(user.validatePassword(password)===true) {
+                    console.log('i shouldn"t be here');
+                    return done(null, user);
+                }
             }
-            return done(null, user);
+
+            return done(null, false, { errors: { 'email or password': 'is invalid' } });
         }).catch(done);
 }));

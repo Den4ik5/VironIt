@@ -34,9 +34,10 @@ userSchema.methods.setPassword = function(password) {
     this.password.hash = crypto.pbkdf2Sync(password, this.password.salt, 10000, 512, 'sha512').toString('hex');
 };
 
-userSchema.methods.validatePassword = async function(password) {
+userSchema.methods.validatePassword =  function(password) {
     const hash = crypto.pbkdf2Sync(password, this.password.salt, 10000, 512, 'sha512').toString('hex');
-    return await this.password.hash === hash;
+    console.log((this.password.hash === hash));
+    return  this.password.hash.toString() === hash.toString();
 };
 
 userSchema.methods.toAuthJSON = async function() {

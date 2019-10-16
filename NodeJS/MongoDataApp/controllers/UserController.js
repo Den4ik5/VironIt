@@ -30,6 +30,7 @@ module.exports = class UserController {
         console.log(user);
         console.log('i am in login User function');
         let temp;
+
         try {
             return passport.authenticate('local', {session: false}, async (err, passportUser, info) => {
                 console.log('i hate this world');
@@ -38,25 +39,20 @@ module.exports = class UserController {
                     return next(err);
                 }
                 if (passportUser) {
+                    console.log('I AM A PASSPORT USER       ',passportUser);
                     const  user =  passportUser;
                     console.log('bbbb');
-                    const qqq = await Service.login(user);
-                    console.log('user is exists', JSON.stringify( {user: await user.toAuthJSON()}));
+                    //const qqq = await Service.login(user);
                     return res.send(JSON.stringify( {user: await user.toAuthJSON()}));
                 } else {
                     console.log('info');
                     return res.send(info);
                 }
             })(req, res, next);
-            // temp = await ((await Service.login(user))(req, res, next));
         }catch (e) {
             console.log(e);
             next(e);
         }
-
-        console.log('temp = ');
-        console.log(temp);
-        res.send(temp);
     }
 
     static async deleteUser(req, res) {

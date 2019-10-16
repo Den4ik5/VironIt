@@ -19,6 +19,15 @@ module.exports = class UserService {
         }
     }
 
+    static async getUserByUsername(username){
+        try {
+            return (await User.findOne({username: username}));
+        }
+        catch (e) {
+            return e;
+        }
+    }
+
     //works
     static async getAllUsers() {
         try {
