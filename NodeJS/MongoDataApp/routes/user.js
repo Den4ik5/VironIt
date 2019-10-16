@@ -9,14 +9,14 @@ const auth = require('../config/auth');
  *  -(path) id* {String} User Id
  */
 
-router.get('/:id', auth.optional, UsersController.getUser);
+router.get('/:id', auth.required, UsersController.getUser);
 
 /*
  * @oas[get] /
  * description: "Returns all users"
  */
 
-router.get('/', auth.optional, UsersController.getAllUsers);
+router.get('/', auth.required, UsersController.getAllUsers);
 
 /*
  * @oas[get] /race/{id}
@@ -25,7 +25,7 @@ router.get('/', auth.optional, UsersController.getAllUsers);
  *  -(path) id {String} User Id
  */
 
-router.get('/race/:id', auth.optional, UsersController.getRaces);
+router.get('/race/:id', auth.required, UsersController.getRaces);
 
 /*
  * @oas[get] /league/{id}
@@ -34,7 +34,7 @@ router.get('/race/:id', auth.optional, UsersController.getRaces);
  *  -(path) id {String} User Id
  */
 
-router.get('/league/:id', auth.optional,  UsersController.getLeague);
+router.get('/league/:id', auth.required,  UsersController.getLeague);
 
 /*
  * @aos[post] /

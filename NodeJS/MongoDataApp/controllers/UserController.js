@@ -24,32 +24,23 @@ module.exports = class UserController {
     }
 
     static async loginUser(req, res, next) {
-        let user = req.body;
-        //   user.username = req.body.username;
-        //   user.password = req.body.password;
-        console.log(user);
-        console.log('i am in login User function');
-        let temp;
-
         try {
             return passport.authenticate('local', {session: false}, async (err, passportUser, info) => {
-                console.log('i hate this world');
                 if (err) {
                     console.log('err');
                     return next(err);
                 }
                 if (passportUser) {
-                    console.log('I AM A PASSPORT USER       ',passportUser);
-                    const  user =  passportUser;
-                    console.log('bbbb');
-                    //const qqq = await Service.login(user);
-                    return res.send(JSON.stringify( {user: await user.toAuthJSON()}));
+                    const user = await passportUser.toAuthJSON();
+                    console.log(JSON.stringify(user));
+                    res.setHeader('authorization', user.token);
+                    return res.send(JSON.stringify({user: user}));
                 } else {
                     console.log('info');
                     return res.send(info);
                 }
             })(req, res, next);
-        }catch (e) {
+        } catch (e) {
             console.log(e);
             next(e);
         }
