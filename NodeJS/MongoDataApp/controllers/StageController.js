@@ -9,7 +9,7 @@ module.exports = class StageController {
         const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             res.statusCode = 403;
-            res.send();
+            res.send("You don't have rights, sorry:)");
         } else {
             res.statusCode = 200;
             res.send(await Service.getStage(req.params.id));
@@ -20,7 +20,7 @@ module.exports = class StageController {
         const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             res.statusCode = 403;
-            res.send();
+            res.send("You don't have rights, sorry:)");
         } else {
             res.statusCode = 200;
             res.send(await Service.getAllStages());
@@ -36,7 +36,7 @@ module.exports = class StageController {
         const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             res.statusCode = 403;
-            res.send();
+            res.send("You don't have rights, sorry:)");
         } else {
             res.statusCode = 200;
             const stage = req.body;
@@ -48,7 +48,7 @@ module.exports = class StageController {
         const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             res.statusCode = 403;
-            res.send();
+            res.send("You don't have rights, sorry:)");
         } else {
             res.statusCode = 200;
             res.send(await Service.deleteStage(req.params.id));
@@ -59,7 +59,7 @@ module.exports = class StageController {
         const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             res.statusCode = 403;
-            res.send();
+            res.send("You don't have rights, sorry:)");
         } else {
             res.statusCode = 200;
             res.send(await Service.editStage(req.body.id, req.body.title, req.body.description, req.body.place))

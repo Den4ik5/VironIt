@@ -10,7 +10,7 @@ module.exports = class LeagueController {
         const league = await Service.getLeague(req.params.id);
         if (!grantRights.grantAccessToLeagues(tokenCredentials, league.users)) {
             res.statusCode = 403;
-            res.send();
+            res.send("You don't have rights, sorry:)");
         } else {
             res.statusCode = 200;
             res.send(league);
@@ -21,7 +21,7 @@ module.exports = class LeagueController {
         const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             res.statusCode = 403;
-            res.send();
+            res.send("You don't have rights, sorry:)");
         } else {
             res.statusCode = 200;
             res.send(await Service.getAllLeagues());
@@ -32,7 +32,7 @@ module.exports = class LeagueController {
         const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             res.statusCode = 403;
-            res.send();
+            res.send("You don't have rights, sorry:)");
         } else {
             res.statusCode = 200;
             const league = req.body;
@@ -44,7 +44,7 @@ module.exports = class LeagueController {
         const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             res.statusCode = 403;
-            res.send();
+            res.send("You don't have rights, sorry:)");
         } else {
             res.statusCode = 200;
             res.send(await Service.deleteLeague(req.params.id));
@@ -55,7 +55,7 @@ module.exports = class LeagueController {
         const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             res.statusCode = 403;
-            res.send();
+            res.send("You don't have rights, sorry:)");
         } else {
             res.statusCode = 200;
             res.send(await Service.editLeague(req.body.id, req.body.title, req.body.description));
@@ -66,7 +66,7 @@ module.exports = class LeagueController {
         const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             res.statusCode = 403;
-            res.send();
+            res.send("You don't have rights, sorry:)");
         } else {
             res.statusCode = 200;
             const userId = req.body.userId;

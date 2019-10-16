@@ -10,7 +10,7 @@ module.exports = class RaceController {
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             if (!grantRights.grantUserRights(tokenCredentials, race.user)) {
                 res.statusCode = 403;
-                res.send();
+                res.send("You don't have rights, sorry:)");
             } else {
                 res.statusCode = 200;
                 res.send(race);
@@ -25,7 +25,7 @@ module.exports = class RaceController {
         const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             res.statusCode = 403;
-            res.send();
+            res.send("You don't have rights, sorry:)");
         } else {
             res.statusCode = 200;
             res.send(await Service.getAllRaces());
@@ -36,7 +36,7 @@ module.exports = class RaceController {
         const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             res.statusCode = 403;
-            res.send();
+            res.send("You don't have rights, sorry:)");
         } else {
             res.statusCode = 200;
             res.send(await Service.getAllRacesBySeason(req.params.season));
@@ -47,7 +47,7 @@ module.exports = class RaceController {
         const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
         if(!grantRights.grantUserRights(tokenCredentials, req.body.user)){
             res.statusCode = 403;
-            res.send();
+            res.send("You don't have rights, sorry:)");
         }else {
             const race = req.body;
             res.statusCode = 200;
@@ -59,7 +59,7 @@ module.exports = class RaceController {
         const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
         if(!grantRights.grantAdminRights(tokenCredentials)){
             res.statusCode = 403;
-            res.send();
+            res.send("You don't have rights, sorry:)");
         }else {
             res.statusCode = 200;
             res.send(await Service.deleteRace(req.params.id));
@@ -70,7 +70,7 @@ module.exports = class RaceController {
         const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
         if(!grantRights.grantAdminRights(tokenCredentials)){
             res.statusCode=403;
-            res.send();
+            res.send("You don't have rights, sorry:)");
         }else {
             res.statusCode = 200;
             res.send(await Service.editRace(req.body.id, req.body.time, req.body.description, req.body.title));

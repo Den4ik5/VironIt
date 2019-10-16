@@ -9,7 +9,7 @@ module.exports = class UserController {
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             if (!grantRights.grantUserRights(tokenCredentials, id)) {
                 res.statusCode = 403;
-                res.send();
+                res.send("You don't have rights, sorry:)");
             } else {
                 res.statusCode = 200;
                 res.send(await Service.getUser(req.params.id));
@@ -24,7 +24,7 @@ module.exports = class UserController {
         const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             res.statusCode = 403;
-            res.send();
+            res.send("You don't have rights, sorry:)");
         } else {
             res.statusCode = 200;
             res.send(await Service.getAllUsers())
@@ -36,7 +36,7 @@ module.exports = class UserController {
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             if (!grantRights.grantUserRights(tokenCredentials, id)) {
                 res.statusCode = 403;
-                res.send();
+                res.send("You don't have rights, sorry:)");
             } else {
                 res.statusCode = 200;
                 res.send(await Service.getAllUserRaces(req.params.id))
@@ -52,7 +52,7 @@ module.exports = class UserController {
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             if (!grantRights.grantUserRights(tokenCredentials, id)) {
                 res.statusCode = 403;
-                res.send();
+                res.send("You don't have rights, sorry:)");
             } else {
                 res.statusCode = 200;
                 res.send(await Service.getUsersLeague(req.params.id))            }
@@ -63,7 +63,7 @@ module.exports = class UserController {
 
     static async addUser(req, res) {
         const user = req.body;
-        res.json(await Service.storeUser(user));
+        res.send(await Service.storeUser(user));
     }
 
     static async loginUser(req, res, next) {
@@ -94,7 +94,7 @@ module.exports = class UserController {
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             if (!grantRights.grantUserRights(tokenCredentials, id)) {
                 res.statusCode = 403;
-                res.send();
+                res.send("You don't have rights, sorry:)");
             } else {
                 res.statusCode = 200;
                 res.send(await Service.deleteUser(req.params.id))
@@ -111,7 +111,7 @@ module.exports = class UserController {
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             if (!grantRights.grantUserRights(tokenCredentials, id)) {
                 res.statusCode = 403;
-                res.send();
+                res.send("You don't have rights, sorry:)");
             } else {
                 res.statusCode = 200;
                 res.send(await Service.editUser(req.body.id, req.body.username, req.body.password));

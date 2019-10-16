@@ -1,13 +1,14 @@
-const grantUserRights = (tokenCredentials, id) =>{
+const grantUserRights = (tokenCredentials, id) => {
     return id === tokenCredentials.id;
 };
-const grantAdminRights = (tokenCredentials) =>{
-    return tokenCredentials.isAdmin === true;
+const grantAdminRights = (tokenCredentials) => {
+    console.log(tokenCredentials.isAdmin);
+    return tokenCredentials.isAdmin === 'true';
 };
-const grantAccessToLeagues = (tokenCredentials, users) =>{
-    return (users.indexOf(tokenCredentials.id)!== -1);
+const grantAccessToLeagues = (tokenCredentials, users) => {
+    return (users.indexOf(tokenCredentials.id) !== -1);
 };
-module.exports= {
+module.exports = {
     grantAdminRights,
     grantUserRights,
     grantAccessToLeagues
