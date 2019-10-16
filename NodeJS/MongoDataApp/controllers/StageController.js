@@ -1,31 +1,68 @@
 const Service = require('../service/StageService');
+const getTokenFromHeaders = require('../service/getTokenFromHeaders');
+const getCredentialsFromJWT = require('../service/getCredentialsFromJWT');
+const grantRights = require('../service/grantRights');
 
 
 module.exports = class StageController {
     static async getStage(req, res) {
-        res.send(await Service.getStage(req.params.id));
+        const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
+        if (!grantRights.grantAdminRights(tokenCredentials)) {
+            res.statusCode = 403;
+            res.send();
+        } else {
+            res.statusCode = 200;
+            res.send(await Service.getStage(req.params.id));
+        }
     }
 
     static async getAllStages(req, res) {
-        res.send(await Service.getAllStages());
+        const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
+        if (!grantRights.grantAdminRights(tokenCredentials)) {
+            res.statusCode = 403;
+            res.send();
+        } else {
+            res.statusCode = 200;
+            res.send(await Service.getAllStages());
+        }
     }
 
-    static async getAllStageRaces(req, res){
+    static async getAllStageRaces(req, res) {
         res.send(await Service.getAllStagesRaces(req.params.id))
     }
 
 
     static async addStage(req, res) {
-        const stage = req.body;
-        res.send(await Service.storeStage(stage));
+        const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
+        if (!grantRights.grantAdminRights(tokenCredentials)) {
+            res.statusCode = 403;
+            res.send();
+        } else {
+            res.statusCode = 200;
+            const stage = req.body;
+            res.send(await Service.storeStage(stage));
+        }
     }
 
     static async deleteStage(req, res) {
-        res.send(await Service.deleteStage(req.params.id));
+        const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
+        if (!grantRights.grantAdminRights(tokenCredentials)) {
+            res.statusCode = 403;
+            res.send();
+        } else {
+            res.statusCode = 200;
+            res.send(await Service.deleteStage(req.params.id));
+        }
     }
 
     static async updateStage(req, res) {
-        res.send(await Service.editStage(req.body.id, req.body.title, req.body.description, req.body.place))
+        const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
+        if (!grantRights.grantAdminRights(tokenCredentials)) {
+            res.statusCode = 403;
+            res.send();
+        } else {
+            res.statusCode = 200;
+            res.send(await Service.editStage(req.body.id, req.body.title, req.body.description, req.body.place))
+        }
     }
-
 };

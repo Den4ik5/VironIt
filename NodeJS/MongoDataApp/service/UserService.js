@@ -4,7 +4,7 @@ const League = require('../model/league/LeaqueSchema');
 const RegisteredUser = require('../model/user/RegisteredUserSchema');
 const PasswordEncoder = require('./PasswordEncoder');
 const mongoose = require('mongoose');
-const getCredentialsFromJWT = require('./getCredentialsFromJWT');
+// const getCredentialsFromJWT = require('./getCredentialsFromJWT');
 // const passport = require('passport');
 // const passportCallback = require('../config/passport');
 module.exports = class UserService {
@@ -158,35 +158,35 @@ module.exports = class UserService {
         }
     }
 
-    static async storeRegisteredUser(userDto) {
-        const user = new RegisteredUser(userDto);
-        try {
-            return (await user.save());
-        } catch (e) {
-            return e;
-        }
-    }
+    // static async storeRegisteredUser(userDto) {
+    //     const user = new RegisteredUser(userDto);
+    //     try {
+    //         return (await user.save());
+    //     } catch (e) {
+    //         return e;
+    //     }
+    // }
 
-    static async login(user) {
-
-        try {
-            console.log('i am in try block');
-            if (!user.password) {
-                console.log('aaaaaaaaaaaaa');
-                return json({
-                    errors: {
-                        password: 'is required',
-                    },
-                });
-            }
-            console.log('about to enter authenticate method');
-
-            return user.toAuthJSON();
-
-        } catch (e) {
-            console.log('i am in a catch block', e);
-            return e;
-
-        }
-    }
+    // static async login(user) {
+    //
+    //     try {
+    //         console.log('i am in try block');
+    //         if (!user.password) {
+    //             console.log('aaaaaaaaaaaaa');
+    //             return json({
+    //                 errors: {
+    //                     password: 'is required',
+    //                 },
+    //             });
+    //         }
+    //         console.log('about to enter authenticate method');
+    //
+    //         return user.toAuthJSON();
+    //
+    //     } catch (e) {
+    //         console.log('i am in a catch block', e);
+    //         return e;
+    //
+    //     }
+    // }
 };

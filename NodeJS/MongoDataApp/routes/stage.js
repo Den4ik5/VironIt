@@ -1,18 +1,19 @@
 const express = require('express');
 const StageController = require('../controllers/StageController');
 const router = express.Router();
+const auth = require('../config/auth');
 /*
  *@oas[get] /{id}
  * description: "Returns stage by Id"
  * parameters:
  * -(path) id {String} Stages Id
  */
-router.get('/:id', StageController.getStage);
+router.get('/:id', auth.required, StageController.getStage);
 /*
  * @oas[get] /
  * description: "Returns all stages"
  */
-router.get('/', StageController.getAllStages);
+router.get('/', auth.required, StageController.getAllStages);
 /*
  * @oas[post] /
  * description: "Adds stage to the database"
@@ -22,7 +23,7 @@ router.get('/', StageController.getAllStages);
  * -(body) place {String} Place vere stage  is
  * -(body) league {String} League Id that stage belongs to
  */
-router.post('/', StageController.addStage);
+router.post('/', auth.required, StageController.addStage);
 /*
  * @oas[put] /
  * description: "Changes stage"
@@ -32,7 +33,7 @@ router.post('/', StageController.addStage);
  * -(body) description {String} New description
  * -(body) place {String} New place
  */
-router.put('/', StageController.updateStage);
+router.put('/', auth.required, StageController.updateStage);
 
 /*
  * @oas[delete] /
@@ -40,6 +41,6 @@ router.put('/', StageController.updateStage);
  * parameters:
  * -(path) id {String} Id user to be deleted
  */
-router.delete('/:id', StageController.deleteStage);
+router.delete('/:id', auth.required, StageController.deleteStage);
 
 module.exports = router;
