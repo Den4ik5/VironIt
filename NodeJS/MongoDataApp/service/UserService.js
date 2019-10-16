@@ -4,8 +4,9 @@ const League = require('../model/league/LeaqueSchema');
 const RegisteredUser = require('../model/user/RegisteredUserSchema');
 const PasswordEncoder = require('./PasswordEncoder');
 const mongoose = require('mongoose');
-const passport = require('passport');
-const passportCallback = require('../config/passport');
+const getCredentialsFromJWT = require('./getCredentialsFromJWT');
+// const passport = require('passport');
+// const passportCallback = require('../config/passport');
 module.exports = class UserService {
 
     //works
@@ -19,11 +20,10 @@ module.exports = class UserService {
         }
     }
 
-    static async getUserByUsername(username){
+    static async getUserByUsername(username) {
         try {
             return (await User.findOne({username: username}));
-        }
-        catch (e) {
+        } catch (e) {
             return e;
         }
     }
@@ -171,7 +171,7 @@ module.exports = class UserService {
 
         try {
             console.log('i am in try block');
-            if(!user.password){
+            if (!user.password) {
                 console.log('aaaaaaaaaaaaa');
                 return json({
                     errors: {
@@ -189,4 +189,4 @@ module.exports = class UserService {
 
         }
     }
- };
+};

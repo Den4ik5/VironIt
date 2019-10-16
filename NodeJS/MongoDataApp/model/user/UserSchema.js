@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
+const CONSTANT = require('../../const');
 
 const userSchema = mongoose.Schema({
     name: {
@@ -14,15 +15,17 @@ const userSchema = mongoose.Schema({
 userSchema.methods.generateJWT = function () {
     console.log('i am in JWT function');
     const today = new Date();
-    const expirationDate = new Date(today);
+    let expirationDate = new Date(today);
     expirationDate.setDate(today.getDate() + 60);
 
     return jwt.sign({
         username: this.username,
         id: this._id,
         exp: parseInt(expirationDate.getTime() / 1000, 10),
-    }, 'secret');
+    }, CONSTANT.SECRET);
 };
+
+
 
 userSchema.methods.setPassword = function (password) {
 

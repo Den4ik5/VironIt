@@ -7,6 +7,8 @@ const auth = require('../config/auth');
  * description: "Returns user by Id"
  * parameters:
  *  -(path) id* {String} User Id
+ * responses:
+ *
  */
 
 router.get('/:id', auth.required, UsersController.getUser);
@@ -74,6 +76,6 @@ router.put('/', auth.required, UsersController.updateUser);
  * -(path) id {String} Users Id
  */
 
-router.delete('/:id', auth.optional, UsersController.deleteUser);
+router.delete('/:id', auth.required, UsersController.deleteUser);
 
 module.exports = router;
