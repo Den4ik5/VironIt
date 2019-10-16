@@ -1,34 +1,77 @@
 const Service = require('../service/LeagueService');
+const getTokenFromHeaders = require('../service/getTokenFromHeaders');
+const getCredentialsFromJWT = require('../service/getCredentialsFromJWT');
+const grantRights = require('../service/grantRights');
 
 module.exports = class LeagueController {
 
     static async getLeague(req, res) {
-        res.send(await Service.getLeague(req.params.id));
+        const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
+        const league = await Service.getLeague(req.params.id);
+        if (!grantRights.grantAccessToLeagues(tokenCredentials, league.users)) {
+            res.statusCode = 403;
+            res.send();
+        } else {
+            res.statusCode = 200;
+            res.send(league);
+        }
     }
 
     static async getAllLeagues(req, res) {
-        res.send(await Service.getAllLeagues());
+        const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
+        if (!grantRights.grantAdminRights(tokenCredentials)) {
+            res.statusCode = 403;
+            res.send();
+        } else {
+            res.statusCode = 200;
+            res.send(await Service.getAllLeagues());
+        }
     }
 
     static async addLeague(req, res) {
-        const league = req.body;
-        res.send(await Service.storeLeague(league));
+        const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
+        if (!grantRights.grantAdminRights(tokenCredentials)) {
+            res.statusCode = 403;
+            res.send();
+        } else {
+            res.statusCode = 200;
+            const league = req.body;
+            res.send(await Service.storeLeague(league));
+        }
     }
 
     static async deleteLeague(req, res) {
-        res.send(await Service.deleteLeague(req.params.id));
+        const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
+        if (!grantRights.grantAdminRights(tokenCredentials)) {
+            res.statusCode = 403;
+            res.send();
+        } else {
+            res.statusCode = 200;
+            res.send(await Service.deleteLeague(req.params.id));
+        }
     }
 
     static async updateLeague(req, res) {
-
-        res.send(await Service.editLeague(req.body.id, req.body.title, req.body.description));
+        const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
+        if (!grantRights.grantAdminRights(tokenCredentials)) {
+            res.statusCode = 403;
+            res.send();
+        } else {
+            res.statusCode = 200;
+            res.send(await Service.editLeague(req.body.id, req.body.title, req.body.description));
+        }
     }
 
     static async addUserToLeague(req, res) {
-        console.log(req.body);
-        const userId = req.body.userId;
-        const leagueId = req.body.leagueId;
-        res.send(await Service.addUserToLeague(leagueId, userId));
+        const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
+        if (!grantRights.grantAdminRights(tokenCredentials)) {
+            res.statusCode = 403;
+            res.send();
+        } else {
+            res.statusCode = 200;
+            const userId = req.body.userId;
+            const leagueId = req.body.leagueId;
+            res.send(await Service.addUserToLeague(leagueId, userId));
+        }
     }
-
 };
