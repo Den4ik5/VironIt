@@ -10,7 +10,436 @@
     }
   },
   "paths": {
-    "/{id}": {
+    "/leagues/{id}": {
+      "get": {
+        "description": "Returns league by Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "league Id",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          },
+          "404": {
+            "description": "Not Founded"
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes league by Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "league Id",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          }
+        }
+      }
+    },
+    "/leagues/": {
+      "get": {
+        "description": "Returns all leagues",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          },
+          "404": {
+            "description": "Not Founded"
+          }
+        }
+      },
+      "post": {
+        "description": "add league",
+        "parameters": [
+          {
+            "name": "season",
+            "in": "body",
+            "description": "season",
+            "type": "String"
+          },
+          {
+            "name": "description",
+            "in": "body",
+            "description": "something about race",
+            "type": "String"
+          },
+          {
+            "name": "title",
+            "in": "body",
+            "description": "title",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          },
+          "500": {
+            "description": "Failed"
+          }
+        }
+      },
+      "put": {
+        "description": "edit race",
+        "parameters": [
+          {
+            "name": "leagueId",
+            "in": "body",
+            "description": "league id",
+            "type": "String"
+          },
+          {
+            "name": "userId",
+            "in": "body",
+            "description": "user id",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          },
+          "500": {
+            "description": "Failed"
+          }
+        }
+      }
+    },
+    "/races/{id}": {
+      "get": {
+        "description": "Returns race by Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "race Id",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          },
+          "404": {
+            "description": "Not Founded"
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes race by Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "races Id",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          }
+        }
+      }
+    },
+    "/races/": {
+      "get": {
+        "description": "Returns all stages",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          },
+          "404": {
+            "description": "Not Founded"
+          }
+        }
+      },
+      "post": {
+        "description": "add stage",
+        "parameters": [
+          {
+            "name": "time",
+            "in": "body",
+            "description": "race time",
+            "type": "String"
+          },
+          {
+            "name": "description",
+            "in": "body",
+            "description": "something about race",
+            "type": "String"
+          },
+          {
+            "name": "title",
+            "in": "body",
+            "description": "title",
+            "type": "String"
+          },
+          {
+            "name": "user",
+            "in": "body",
+            "description": "UserID race belongs to",
+            "type": "String"
+          },
+          {
+            "name": "stage",
+            "in": "body",
+            "description": "StageID race belongs to",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          },
+          "500": {
+            "description": "Failed"
+          }
+        }
+      },
+      "put": {
+        "description": "edit race",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "body",
+            "description": "race id",
+            "type": "String"
+          },
+          {
+            "name": "time",
+            "in": "body",
+            "description": "time",
+            "type": "String"
+          },
+          {
+            "name": "description",
+            "in": "body",
+            "description": "description",
+            "type": "String"
+          },
+          {
+            "name": "title",
+            "in": "body",
+            "description": "title",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          },
+          "500": {
+            "description": "Failed"
+          }
+        }
+      }
+    },
+    "/races/season/{season}": {
+      "get": {
+        "description": "Left join races to stages and stages to leagues matched by a season",
+        "parameters": [
+          {
+            "name": "season",
+            "in": "path",
+            "description": "season",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          },
+          "404": {
+            "description": "Not Founded"
+          }
+        }
+      }
+    },
+    "/stages/{id}": {
+      "get": {
+        "description": "Returns stage by Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Stage Id",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          },
+          "404": {
+            "description": "Not Founded"
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes stage by Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "stages Id",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          }
+        }
+      }
+    },
+    "/stages/": {
+      "get": {
+        "description": "Returns all stages",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          },
+          "404": {
+            "description": "Not Founded"
+          }
+        }
+      },
+      "post": {
+        "description": "add stage",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "body",
+            "description": "stages title",
+            "type": "String"
+          },
+          {
+            "name": "description",
+            "in": "body",
+            "description": "something about stage",
+            "type": "String"
+          },
+          {
+            "name": "place",
+            "in": "body",
+            "description": "where should stage starts",
+            "type": "String"
+          },
+          {
+            "name": "league",
+            "in": "body",
+            "description": "leagueID stage belongs to",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          },
+          "500": {
+            "description": "Failed"
+          }
+        }
+      },
+      "put": {
+        "description": "edit stage",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "body",
+            "description": "stages title",
+            "type": "String"
+          },
+          {
+            "name": "description",
+            "in": "body",
+            "description": "something about stage",
+            "type": "String"
+          },
+          {
+            "name": "place",
+            "in": "body",
+            "description": "where should stage starts",
+            "type": "String"
+          },
+          {
+            "name": "league",
+            "in": "body",
+            "description": "leagueID stage belongs to",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          },
+          "500": {
+            "description": "Failed"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
       "get": {
         "description": "Returns user by Id",
         "parameters": [
@@ -53,7 +482,7 @@
         }
       }
     },
-    "/": {
+    "/users/": {
       "get": {
         "description": "Returns all users",
         "responses": {
@@ -104,58 +533,9 @@
             "description": "Failed"
           }
         }
-      },
-      "put": {
-        "description": "Changes users username",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "body",
-            "description": "id",
-            "type": "String"
-          },
-          {
-            "name": "username",
-            "in": "body",
-            "description": "username",
-            "type": "String"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "403": {
-            "description": "Not enough rights"
-          }
-        }
       }
     },
-    "/season/{season}": {
-      "get": {
-        "description": "Left join races to stages and stages to leagues matched by a season",
-        "parameters": [
-          {
-            "name": "season",
-            "in": "path",
-            "description": "season",
-            "type": "String"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "403": {
-            "description": "Not enough rights"
-          },
-          "404": {
-            "description": "Not Founded"
-          }
-        }
-      }
-    },
-    "/race/{id}": {
+    "/users/race/{id}": {
       "get": {
         "description": "Returns races by userId",
         "parameters": [
@@ -179,7 +559,7 @@
         }
       }
     },
-    "/league/{id}": {
+    "/users/league/{id}": {
       "get": {
         "description": "Returns all leagues for user by Id",
         "parameters": [
@@ -226,6 +606,33 @@
           },
           "300": {
             "description": "info"
+          }
+        }
+      }
+    },
+    "/": {
+      "put": {
+        "description": "Changes users username",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "body",
+            "description": "id",
+            "type": "String"
+          },
+          {
+            "name": "username",
+            "in": "body",
+            "description": "username",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
           }
         }
       }

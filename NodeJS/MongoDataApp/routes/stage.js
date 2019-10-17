@@ -3,7 +3,7 @@ const StageController = require('../controllers/StageController');
 const router = express.Router();
 const auth = require('../config/auth');
 /*
-* @oas [get] /{id}
+* @oas [get] /stages/{id}
 * description: "Returns stage by Id"
 * parameters:
 *   -  name: "id"
@@ -20,7 +20,7 @@ const auth = require('../config/auth');
 */
 router.get('/:id', auth.required, StageController.getStage);
 /*
-* @oas [get] /
+* @oas [get] /stages/
 * description: "Returns all stages"
 * responses:
 *   200:
@@ -32,7 +32,7 @@ router.get('/:id', auth.required, StageController.getStage);
 */
 router.get('/', auth.required, StageController.getAllStages);
 /*
-* @oas [post] /
+* @oas [post] /stages/
 * description: "add stage"
 * parameters:
 *   -  name: "title"
@@ -61,7 +61,7 @@ router.get('/', auth.required, StageController.getAllStages);
  */
 router.post('/', auth.required, StageController.addStage);
 /*
-* @oas [put] /
+* @oas [put] /stages/
 * description: "edit stage"
 * parameters:
 *   -  name: "title"
@@ -90,7 +90,7 @@ router.post('/', auth.required, StageController.addStage);
  */
 router.put('/', auth.required, StageController.updateStage);
 /*
-* @oas [delete] /{id}
+* @oas [delete] /stages/{id}
 * description: "Deletes stage by Id"
 * parameters:
 *   -  name: "id"
@@ -103,7 +103,6 @@ router.put('/', auth.required, StageController.updateStage);
 *   403:
 *     description: "Not enough rights"
 */
-
 router.delete('/:id', auth.required, StageController.deleteStage);
 
 module.exports = router;

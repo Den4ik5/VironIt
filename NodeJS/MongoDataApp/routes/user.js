@@ -5,7 +5,7 @@ const auth = require('../config/auth');
 
 
 /*
-* @oas [get] /{id}
+* @oas [get] /users/{id}
 * description: "Returns user by Id"
 * parameters:
 *   -  name: "id"
@@ -24,7 +24,7 @@ const auth = require('../config/auth');
 router.get('/:id', auth.required, UsersController.getUser);
 
 /*
-* @oas [get] /
+* @oas [get] /users/
 * description: "Returns all users"
 * responses:
 *   200:
@@ -38,7 +38,7 @@ router.get('/:id', auth.required, UsersController.getUser);
 router.get('/', auth.required, UsersController.getAllUsers);
 
 /*
-* @oas [get] /race/{id}
+* @oas [get] /users/race/{id}
 * description: "Returns races by userId"
 * parameters:
 *   -  name: "id"
@@ -57,7 +57,7 @@ router.get('/', auth.required, UsersController.getAllUsers);
 router.get('/race/:id', auth.required, UsersController.getRaces);
 
 /*
-* @oas [get] /league/{id}
+* @oas [get] /users/league/{id}
 * description: "Returns all leagues for user by Id"
 * parameters:
 *   -  name: "id"
@@ -76,7 +76,7 @@ router.get('/race/:id', auth.required, UsersController.getRaces);
 router.get('/league/:id', auth.required, UsersController.getLeague);
 
 /*
-* @oas [post] /
+* @oas [post] /users/
 * description: "add user"
 * parameters:
 *   -  name: "name"
@@ -146,7 +146,7 @@ router.post('/login', auth.optional, UsersController.loginUser);
 
 router.put('/', auth.required, UsersController.updateUser);
 /*
-* @oas [delete] /{id}
+* @oas [delete] /users/{id}
 * description: "Deletes user by Id"
 * parameters:
 *   -  name: "id"
@@ -159,7 +159,6 @@ router.put('/', auth.required, UsersController.updateUser);
 *   403:
 *     description: "Not enough rights"
 */
-
 
 router.delete('/:id', auth.required, UsersController.deleteUser);
 

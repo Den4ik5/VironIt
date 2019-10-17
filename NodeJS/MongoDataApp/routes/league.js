@@ -4,7 +4,7 @@ const router = express.Router();
 const auth = require('../config/auth');
 
 /*
-* @oas [get] /{id}
+* @oas [get] /leagues/{id}
 * description: "Returns league by Id"
 * parameters:
 *   -  name: "id"
@@ -19,10 +19,9 @@ const auth = require('../config/auth');
 *   404:
 *     description: "Not Founded"
 */
-
 router.get('/:id', auth.required, LeagueController.getLeague);
 /*
-* @oas [get] /
+* @oas [get] /leagues/
 * description: "Returns all leagues"
 * responses:
 *   200:
@@ -32,10 +31,9 @@ router.get('/:id', auth.required, LeagueController.getLeague);
 *   404:
 *     description: "Not Founded"
 */
-
 router.get('/', auth.required, LeagueController.getAllLeagues);
 /*
-* @oas [post] /
+* @oas [post] /leagues/
 * description: "add league"
 * parameters:
 *   -  name: "season"
@@ -58,11 +56,9 @@ router.get('/', auth.required, LeagueController.getAllLeagues);
 *   403:
 *     description: "Not enough rights"
  */
-
 router.post('/', auth.required, LeagueController.addLeague);
-
 /*
-* @oas [put] /
+* @oas [put] /leagues/
 * description: "edit race"
 * parameters:
 *   -  name: "id"
@@ -85,11 +81,9 @@ router.post('/', auth.required, LeagueController.addLeague);
 *   403:
 *     description: "Not enough rights"
  */
-
 router.put('/', auth.required, LeagueController.updateLeague);
-
 /*
-* @oas [put] /
+* @oas [put] /leagues/
 * description: "edit race"
 * parameters:
 *   -  name: "leagueId"
@@ -108,11 +102,9 @@ router.put('/', auth.required, LeagueController.updateLeague);
 *   403:
 *     description: "Not enough rights"
  */
-
 router.put('/user', auth.required, LeagueController.addUserToLeague);
-
 /*
-* @oas [delete] /{id}
+* @oas [delete] /leagues/{id}
 * description: "Deletes league by Id"
 * parameters:
 *   -  name: "id"

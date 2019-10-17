@@ -5,7 +5,7 @@ const auth = require('../config/auth');
 
 
 /*
-* @oas [get] /{id}
+* @oas [get] /races/{id}
 * description: "Returns race by Id"
 * parameters:
 *   -  name: "id"
@@ -22,7 +22,7 @@ const auth = require('../config/auth');
 */
 router.get('/:id', auth.required,  RaceController.getRace);
 /*
-* @oas [get] /
+* @oas [get] /races/
 * description: "Returns all stages"
 * responses:
 *   200:
@@ -33,9 +33,8 @@ router.get('/:id', auth.required,  RaceController.getRace);
 *     description: "Not Founded"
 */
 router.get('/', auth.required, RaceController.getAllRaces);
-
 /*
-* @oas [get] /season/{season}
+* @oas [get] /races/season/{season}
 * description: "Left join races to stages and stages to leagues matched by a season"
 * parameters:
 *   -  name: "season"
@@ -50,11 +49,9 @@ router.get('/', auth.required, RaceController.getAllRaces);
 *   404:
 *     description: "Not Founded"
 */
-
 router.get('/season/:season', auth.required, RaceController.getAllRacesBySeason);
-
 /*
-* @oas [post] /
+* @oas [post] /races/
 * description: "add stage"
 * parameters:
 *   -  name: "time"
@@ -85,12 +82,9 @@ router.get('/season/:season', auth.required, RaceController.getAllRacesBySeason)
 *   403:
 *     description: "Not enough rights"
  */
-
-
 router.post('/', auth.required, RaceController.addRace);
-
 /*
-* @oas [put] /
+* @oas [put] /races/
 * description: "edit race"
 * parameters:
 *   -  name: "id"
@@ -117,11 +111,9 @@ router.post('/', auth.required, RaceController.addRace);
 *   403:
 *     description: "Not enough rights"
  */
-
-
 router.put('/', auth.required, RaceController.updateRace);
 /*
-* @oas [delete] /{id}
+* @oas [delete] /races/{id}
 * description: "Deletes race by Id"
 * parameters:
 *   -  name: "id"
@@ -134,7 +126,6 @@ router.put('/', auth.required, RaceController.updateRace);
 *   403:
 *     description: "Not enough rights"
 */
-
 router.delete('/:id', auth.required, RaceController.deleteRace);
 
 module.exports = router;
