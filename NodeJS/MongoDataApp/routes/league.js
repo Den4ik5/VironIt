@@ -111,7 +111,6 @@ router.put('/', auth.required, LeagueController.updateLeague);
 
 router.put('/user', auth.required, LeagueController.addUserToLeague);
 
-
 /*
 * @oas [delete] /{id}
 * description: "Deletes league by Id"

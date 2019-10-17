@@ -73,7 +73,7 @@ router.get('/race/:id', auth.required, UsersController.getRaces);
 *     description: "Not Founded"
 */
 
-router.get('/league/:id', auth.required,  UsersController.getLeague);
+router.get('/league/:id', auth.required, UsersController.getLeague);
 
 /*
 * @oas [post] /
