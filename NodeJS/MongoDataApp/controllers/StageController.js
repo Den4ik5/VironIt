@@ -2,6 +2,7 @@ const Service = require('../service/StageService');
 const getTokenFromHeaders = require('../service/getTokenFromHeaders');
 const getCredentialsFromJWT = require('../service/getCredentialsFromJWT');
 const grantRights = require('../service/grantRights');
+const CONSTANT = require('../const');
 
 
 module.exports = class StageController {
@@ -9,10 +10,16 @@ module.exports = class StageController {
         const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             res.statusCode = 403;
-            res.send("You don't have rights, sorry:)");
+            res.send(CONSTANT.NOT_ENOUGH_RIGHTS_MESSAGE);
         } else {
-            res.statusCode = 200;
-            res.send(await Service.getStage(req.params.id));
+            const stage = await Service.getStage(req.params.id);
+            if(stage){
+                res.statusCode = 200;
+                res.send(stage);
+            }else {
+                res.statusCode = 404;
+                res.send(CONSTANT.NOT_FOUNDED_MESSAGE);
+            }
         }
     }
 
@@ -20,23 +27,24 @@ module.exports = class StageController {
         const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             res.statusCode = 403;
-            res.send("You don't have rights, sorry:)");
+            res.send(CONSTANT.NOT_ENOUGH_RIGHTS_MESSAGE);
         } else {
-            res.statusCode = 200;
-            res.send(await Service.getAllStages());
+            const stages = await Service.getAllStages();
+            if(stages){
+                res.statusCode = 200;
+                res.send(stages);
+            }else{
+                res.statusCode = 404;
+                res.send(CONSTANT.NOT_FOUNDED_MESSAGE);
+            }
         }
     }
-
-    static async getAllStageRaces(req, res) {
-        res.send(await Service.getAllStagesRaces(req.params.id))
-    }
-
 
     static async addStage(req, res) {
         const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             res.statusCode = 403;
-            res.send("You don't have rights, sorry:)");
+            res.send(CONSTANT.NOT_ENOUGH_RIGHTS_MESSAGE);
         } else {
             res.statusCode = 200;
             const stage = req.body;
@@ -48,7 +56,7 @@ module.exports = class StageController {
         const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             res.statusCode = 403;
-            res.send("You don't have rights, sorry:)");
+            res.send(CONSTANT.NOT_ENOUGH_RIGHTS_MESSAGE);
         } else {
             res.statusCode = 200;
             res.send(await Service.deleteStage(req.params.id));
@@ -59,7 +67,7 @@ module.exports = class StageController {
         const tokenCredentials = getCredentialsFromJWT(getTokenFromHeaders(req));
         if (!grantRights.grantAdminRights(tokenCredentials)) {
             res.statusCode = 403;
-            res.send("You don't have rights, sorry:)");
+            res.send(CONSTANT.NOT_ENOUGH_RIGHTS_MESSAGE);
         } else {
             res.statusCode = 200;
             res.send(await Service.editStage(req.body.id, req.body.title, req.body.description, req.body.place))
