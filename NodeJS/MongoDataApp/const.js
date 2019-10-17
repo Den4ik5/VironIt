@@ -3,5 +3,7 @@ module.exports ={
     PORT : 8000,
     DB_HOST : 'mongodb://localhost/27017',
     SEASON : ["winter", "spring", "summer", "autumn"],
-    SECRET: 'secret'
+    SECRET: 'secret',
+    NOT_ENOUGH_RIGHTS_MESSAGE : "You don't have rights, sorry:)",
+    NOT_FOUNDED_MESSAGE: "No such information founded, sorry:)"
 };

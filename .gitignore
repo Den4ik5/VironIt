@@ -3,6 +3,7 @@
 /NodeJS/JSONDataService/package-lock.json
 NodeJS/MongoDataApp/package-lock.json
 NodeJS/MongoDataApp/node_modules/
+NodeJS/MongoDataApp/usersAndTheirPasswords.txt
 /NodeJs/TestExpressGenerator/
 NodeJs/test encryption/package-lock.json
 NodeJs/test encryption/package.json
