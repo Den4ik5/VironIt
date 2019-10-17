@@ -3,36 +3,92 @@ const StageController = require('../controllers/StageController');
 const router = express.Router();
 const auth = require('../config/auth');
 /*
- *@oas[get] /{id}
- * description: "Returns stage by Id"
- * parameters:
- * -(path) id {String} Stages Id
- */
+* @oas [get] /{id}
+* description: "Returns stage by Id"
+* parameters:
+*   -  name: "id"
+*      in: path
+*      description: "Stage Id"
+*      type: "String"
+* responses:
+*   200:
+*     description: OK
+*   403:
+*     description: "Not enough rights"
+*   404:
+*     description: "Not Founded"
+*/
 router.get('/:id', auth.required, StageController.getStage);
 /*
- * @oas[get] /
- * description: "Returns all stages"
- */
+* @oas [get] /
+* description: "Returns all stages"
+* responses:
+*   200:
+*     description: OK
+*   403:
+*     description: "Not enough rights"
+*   404:
+*     description: "Not Founded"
+*/
 router.get('/', auth.required, StageController.getAllStages);
 /*
- * @oas[post] /
- * description: "Adds stage to the database"
- * parameters:
- * -(body) title {String} Short information about stage
- * -(body) description {String} Everything you need to know about stage
- * -(body) place {String} Place vere stage  is
- * -(body) league {String} League Id that stage belongs to
+* @oas [post] /
+* description: "add stage"
+* parameters:
+*   -  name: "title"
+*      in: body
+*      description: "stages title"
+*      type: "String"
+*   -  name: "description"
+*      in: body
+*      description: "something about stage"
+*      type: "String"
+*   -  name: "place"
+*      in: body
+*      description: "where should stage starts"
+*      type: "String"
+*   -  name: "league"
+*      in: body
+*      description: "leagueID stage belongs to"
+*      type: "String"
+* responses:
+*   200:
+*     description: OK
+*   500:
+*     description: "Failed"
+*   403:
+*     description: "Not enough rights"
  */
 router.post('/', auth.required, StageController.addStage);
 /*
- * @oas[put] /
- * description: "Changes stage"
- * parameters:
- * -(body) id {String} Stage id
- * -(body) title {String} New title
- * -(body) description {String} New description
- * -(body) place {String} New place
+* @oas [put] /
+* description: "edit stage"
+* parameters:
+*   -  name: "title"
+*      in: body
+*      description: "stages title"
+*      type: "String"
+*   -  name: "description"
+*      in: body
+*      description: "something about stage"
+*      type: "String"
+*   -  name: "place"
+*      in: body
+*      description: "where should stage starts"
+*      type: "String"
+*   -  name: "league"
+*      in: body
+*      description: "leagueID stage belongs to"
+*      type: "String"
+* responses:
+*   200:
+*     description: OK
+*   500:
+*     description: "Failed"
+*   403:
+*     description: "Not enough rights"
  */
+//TODO:ADD responces to the controller(try/catch block)
 router.put('/', auth.required, StageController.updateStage);
 
 /*

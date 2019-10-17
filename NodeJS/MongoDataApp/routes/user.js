@@ -25,7 +25,7 @@ router.get('/:id', auth.required, UsersController.getUser);
 
 /*
 * @oas [get] /
-* description: "login user"
+* description: "Returns all users"
 * responses:
 *   200:
 *     description: OK
@@ -77,7 +77,24 @@ router.get('/league/:id', auth.required,  UsersController.getLeague);
 
 /*
 * @oas [post] /
-* description: "login user"
+* description: "add user"
+* parameters:
+*   -  name: "name"
+*      in: body
+*      description: "users name and lastName"
+*      type: "Object"
+*   -  name: "username"
+*      in: body
+*      description: "username"
+*      type: "String"
+*   -  name: "password"
+*      in: body
+*      description: "password"
+*      type: "String"
+*   -  name: "isAdmin"
+*      in: body
+*      description: "sets admin rights"
+*      type: "Boolean"
 * responses:
 *   200:
 *     description: OK
