@@ -90,11 +90,11 @@ module.exports = class UserController {
             }
         } else {
             const leagues = await Service.getUsersLeague(req.params.id);
-            if(leagues){
+            if (leagues) {
                 res.statusCode = 200;
                 res.send(leagues);
             } else {
-                res.statusCode =404;
+                res.statusCode = 404;
                 res.send(CONSTANT.NOT_FOUNDED_MESSAGE);
             }
         }
@@ -102,7 +102,14 @@ module.exports = class UserController {
 
     static async addUser(req, res) {
         const user = req.body;
-        res.send(await Service.storeUser(user));
+        try {
+            res.statusCode = 200;
+            res.send(await Service.storeUser(user));
+        } catch (e) {
+            res.statusCode = 500;
+            res.send(e);
+        }
+
     }
 
     static async loginUser(req, res, next) {
@@ -116,9 +123,11 @@ module.exports = class UserController {
                     const user = await passportUser.toAuthJSON();
                     console.log(JSON.stringify(user));
                     res.setHeader('authorization', user.token);
+                    res.statusCode = 200;
                     return res.send(JSON.stringify({user: user}));
                 } else {
                     console.log('info');
+                    res.statusCode = 300;
                     return res.send(info);
                 }
             })(req, res, next);

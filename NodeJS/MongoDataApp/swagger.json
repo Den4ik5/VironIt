@@ -1,0 +1,184 @@
+{
+  "swagger": "2.0",
+  "x-api-id": "name",
+  "info": {
+    "version": "1.0.0",
+    "title": "name",
+    "license": {
+      "name": "ISC",
+      "url": "http://localhost:8000"
+    }
+  },
+  "paths": {
+    "/{id}": {
+      "get": {
+        "description": "Returns user by Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User Id",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          },
+          "404": {
+            "description": "Not Founded"
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes user by Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User Id",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "description": "login user",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          },
+          "404": {
+            "description": "Not Founded"
+          }
+        }
+      },
+      "post": {
+        "description": "login user",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Failed"
+          }
+        }
+      },
+      "put": {
+        "description": "Changes users username",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "body",
+            "description": "id",
+            "type": "String"
+          },
+          {
+            "name": "username",
+            "in": "body",
+            "description": "username",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          }
+        }
+      }
+    },
+    "/race/{id}": {
+      "get": {
+        "description": "Returns races by userId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User Id",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          },
+          "404": {
+            "description": "Not Founded"
+          }
+        }
+      }
+    },
+    "/league/{id}": {
+      "get": {
+        "description": "Returns all leagues for user by Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User Id",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          },
+          "404": {
+            "description": "Not Founded"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "description": "authentication",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "body",
+            "description": "Username",
+            "type": "String"
+          },
+          {
+            "name": "password",
+            "in": "body",
+            "description": "password",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "300": {
+            "description": "info"
+          }
+        }
+      }
+    }
+  }
+}

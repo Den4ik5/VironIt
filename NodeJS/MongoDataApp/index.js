@@ -12,6 +12,9 @@ const leaguesRouter = require('./routes/league');
 const racesRouter = require('./routes/race');
 const stagesRouter = require('./routes/stage');
 
+const swaggerUI = require('swagger-ui-express');
+const swaggerDoc = require('./swagger');
+
 app = express();
 app.listen(constants.PORT, () => {
     console.log('server is listening http://' + constants.HOST + ':' + constants.PORT);
@@ -28,6 +31,8 @@ app.use('/users', usersRouter);
 app.use('/races', racesRouter);
 app.use('/stages', stagesRouter);
 app.use('/leagues', leaguesRouter);
+
+app.use('/swagger', swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
 setupDB();
 module.exports = app;
