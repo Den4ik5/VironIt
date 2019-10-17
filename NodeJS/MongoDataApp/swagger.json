@@ -131,6 +131,30 @@
         }
       }
     },
+    "/season/{season}": {
+      "get": {
+        "description": "Left join races to stages and stages to leagues matched by a season",
+        "parameters": [
+          {
+            "name": "season",
+            "in": "path",
+            "description": "season",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Not enough rights"
+          },
+          "404": {
+            "description": "Not Founded"
+          }
+        }
+      }
+    },
     "/race/{id}": {
       "get": {
         "description": "Returns races by userId",

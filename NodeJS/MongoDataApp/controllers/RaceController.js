@@ -72,9 +72,15 @@ module.exports = class RaceController {
             res.statusCode = 403;
             res.send(CONSTANT.NOT_ENOUGH_RIGHTS_MESSAGE)
         }else {
-            const race = req.body;
-            res.statusCode = 200;
-            res.send(await Service.storeRace(race));
+            try {
+                const race = req.body;
+                res.statusCode = 200;
+                res.send(await Service.storeRace(race));
+            }catch (e) {
+                res.statusCode=500;
+                res.send(e);
+            }
+
         }
     }
 

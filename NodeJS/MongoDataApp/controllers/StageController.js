@@ -74,8 +74,14 @@ module.exports = class StageController {
             res.statusCode = 403;
             res.send(CONSTANT.NOT_ENOUGH_RIGHTS_MESSAGE);
         } else {
-            res.statusCode = 200;
-            res.send(await Service.editStage(req.body.id, req.body.title, req.body.description, req.body.place))
+            try {
+                res.statusCode = 200;
+                res.send(await Service.editStage(req.body.id, req.body.title, req.body.description, req.body.place))
+            }catch (e) {
+                res.statusCode = 500;
+                res.send();
+            }
+
         }
     }
 };

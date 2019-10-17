@@ -88,15 +88,22 @@ router.post('/', auth.required, StageController.addStage);
 *   403:
 *     description: "Not enough rights"
  */
-//TODO:ADD responces to the controller(try/catch block)
 router.put('/', auth.required, StageController.updateStage);
-
 /*
- * @oas[delete] /
- * description: "Deletes stage"
- * parameters:
- * -(path) id {String} Id user to be deleted
- */
+* @oas [delete] /{id}
+* description: "Deletes stage by Id"
+* parameters:
+*   -  name: "id"
+*      in: path
+*      description: "stages Id"
+*      type: "String"
+* responses:
+*   200:
+*     description: OK
+*   403:
+*     description: "Not enough rights"
+*/
+
 router.delete('/:id', auth.required, StageController.deleteStage);
 
 module.exports = router;

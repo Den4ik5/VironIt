@@ -4,49 +4,128 @@ const router = express.Router();
 const auth = require('../config/auth');
 
 /*
- * @oas[get] /{id}
- * description: "returns league by id"
- * parameters:
- * -(path) id {String} leagues id
- */
+* @oas [get] /{id}
+* description: "Returns league by Id"
+* parameters:
+*   -  name: "id"
+*      in: path
+*      description: "league Id"
+*      type: "String"
+* responses:
+*   200:
+*     description: OK
+*   403:
+*     description: "Not enough rights"
+*   404:
+*     description: "Not Founded"
+*/
+
 router.get('/:id', auth.required, LeagueController.getLeague);
 /*
- * @oas[get] /
- * description: "returns all leagues"
- */
+* @oas [get] /
+* description: "Returns all leagues"
+* responses:
+*   200:
+*     description: OK
+*   403:
+*     description: "Not enough rights"
+*   404:
+*     description: "Not Founded"
+*/
+
 router.get('/', auth.required, LeagueController.getAllLeagues);
 /*
- * @oas[post] /
- * description: "adds league to database"
- * parameters:
- * -(body) season {String}
- * -(body) description {String}
- * -(body) title {String}
+* @oas [post] /
+* description: "add league"
+* parameters:
+*   -  name: "season"
+*      in: body
+*      description: "season"
+*      type: "String"
+*   -  name: "description"
+*      in: body
+*      description: "something about race"
+*      type: "String"
+*   -  name: "title"
+*      in: body
+*      description: "title"
+*      type: "String"
+* responses:
+*   200:
+*     description: OK
+*   500:
+*     description: "Failed"
+*   403:
+*     description: "Not enough rights"
  */
+
 router.post('/', auth.required, LeagueController.addLeague);
+
 /*
- * @oas[put] /
- * description: "changes league"
- * parameters:
- * -(body) id {String}
- * -(body) title {String}
- * -(body) description {String}
+* @oas [put] /
+* description: "edit race"
+* parameters:
+*   -  name: "id"
+*      in: body
+*      description: "league id"
+*      type: "String"
+*   -  name: "description"
+*      in: body
+*      description: "description"
+*      type: "String"
+*   -  name: "title"
+*      in: body
+*      description: "title"
+*      type: "String"
+* responses:
+*   200:
+*     description: OK
+*   500:
+*     description: "Failed"
+*   403:
+*     description: "Not enough rights"
  */
+
 router.put('/', auth.required, LeagueController.updateLeague);
+
 /*
- * @oas[put] /user
- * description: "adds user to a league"
- * parameters:
- * -(body) leagueId {String} league id
- * -(body) userId {String} user Id
+* @oas [put] /
+* description: "edit race"
+* parameters:
+*   -  name: "leagueId"
+*      in: body
+*      description: "league id"
+*      type: "String"
+*   -  name: "userId"
+*      in: body
+*      description: "user id"
+*      type: "String"
+* responses:
+*   200:
+*     description: OK
+*   500:
+*     description: "Failed"
+*   403:
+*     description: "Not enough rights"
  */
+
 router.put('/user', auth.required, LeagueController.addUserToLeague);
+
+
 /*
- * @oas[delete] /{id}
- * description: "Deletes league by Id"
- * parameters:
- * -(path) id {String} league Id
- */
+* @oas [delete] /{id}
+* description: "Deletes league by Id"
+* parameters:
+*   -  name: "id"
+*      in: path
+*      description: "league Id"
+*      type: "String"
+* responses:
+*   200:
+*     description: OK
+*   403:
+*     description: "Not enough rights"
+*/
 router.delete('/:id', auth.required, LeagueController.deleteLeague);
 
 module.exports = router;
