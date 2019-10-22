@@ -16,7 +16,7 @@ export class InputComponent implements OnInit {
   }
 
   setArr():void{
-    if(this.output!=='undefined'){
+    if(this.output){
       this.outputArr.push(this.output);
     }
   }
@@ -25,5 +25,4 @@ export class InputComponent implements OnInit {
     console.log(this.output);
     this.setArr();
   }
-
 }
