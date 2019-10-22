@@ -8,14 +8,22 @@ import { Component, OnInit } from '@angular/core';
 export class InputComponent implements OnInit {
 
   output: string;
-
+  outputArr : string[] =[];
 
   constructor() { }
 
   ngOnInit() {
   }
-  log(output:string):void{
-    console.log(output);
+
+  setArr():void{
+    if(this.output!=='undefined'){
+      this.outputArr.push(this.output);
+    }
+  }
+
+  log():void{
+    console.log(this.output);
+    this.setArr();
   }
 
 }

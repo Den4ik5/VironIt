@@ -1,5 +1,11 @@
 <p>input works!</p>
 <label>output:
-  <input [(ngModel)]="output" placeholder="output" (ngModelChange)="log(output)" />
+  <input [(ngModel)]="output" placeholder="output" (ngModelChange)="log()" />
 </label>
 
+<div *ngIf="outputArr">
+  <li *ngFor="let el of outputArr">
+    el: {{el}}
+  </li>
+
+</div>
