@@ -3,17 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { InputComponent } from './input/input.component';
-import { EmptyComponent } from './empty/empty.component';
+import { UserComponent } from './user/user.component';
 import {FormsModule} from "@angular/forms";
-import {ChildInputComponent} from "./child.input/child.input.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    InputComponent,
-    EmptyComponent,
-    ChildInputComponent
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -21,6 +17,6 @@ import {ChildInputComponent} from "./child.input/child.input.component";
     FormsModule
   ],
   providers: [],
-  bootstrap: [EmptyComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
